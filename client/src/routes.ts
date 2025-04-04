@@ -1,10 +1,10 @@
 export const routes = {
-    login: "/",
+    login: "/login",
     register: "/register",
 
-    dashboard: "/dashboard",
-    newEntry: "/dashboard/new-entry",
-    calendar: "/dashboard/calendar",
-    kanban: "/dashboard/kanban",
-    profile: "/dashboard/profile",
+    dashboard: "/",
+    newEntry: "/new-entry",
+    calendar: "/calendar",
+    kanban: "/kanban",
+    profile: "/profile",
 }

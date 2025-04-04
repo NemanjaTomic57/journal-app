@@ -1,11 +1,12 @@
 import { IconType } from "react-icons";
 import { BsFillKanbanFill } from "react-icons/bs";
 import { FaCalendarAlt, FaNewspaper } from "react-icons/fa";
-import { MdAccountBox, MdSpaceDashboard } from "react-icons/md";
+import { FiChevronsLeft } from "react-icons/fi";
+import { MdAccountBox } from "react-icons/md";
 import { RiLogoutBoxFill } from "react-icons/ri";
 
 const icons: { [key: string]: IconType } = {
-  dashboard: MdSpaceDashboard,
+  chevsLeft: FiChevronsLeft,
   newEntry: FaNewspaper,
   calendar: FaCalendarAlt,
   kanban: BsFillKanbanFill,

@@ -2,7 +2,8 @@
 
 :root {
   --primary: #26678f;
-  --stone: #c7e0f0;
+  --stone: #d3eeff;
+  --stone-shade: #bad6e7;
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -10,6 +11,7 @@
 @theme inline {
   --color-primary: var(--primary);
   --color-stone: var(--stone);
+  --color-stone-shade: var(--stone-shade);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -24,7 +26,7 @@ body {
 
 .container {
   max-width: none;
-  padding: 20px;
+  padding: 40px;
 }
 
 .container-center-sm {
@@ -61,6 +63,24 @@ a:hover {
 
 .input:focus {
   outline: 2px solid var(--primary);
+  border-color: transparent;
+}
+
+.input-title {
+  border: none;
+  padding-bottom: 1px;
+  border-bottom: 1px solid var(--foreground);
+  border-radius: 0px;
+}
+
+.input-title:focus {
+  padding-bottom: 0px;
+  border-bottom: 2px solid var(--primary);
+  outline: none;
+}
+
+::placeholder {
+  color: var(--stone-shade);
 }
 
 /* BUTTONS */

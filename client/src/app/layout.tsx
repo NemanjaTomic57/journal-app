@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { Red_Hat_Text } from "next/font/google";
+import { Petit_Formal_Script, Red_Hat_Text } from "next/font/google";
 import "./globals.css";
-import Header from "@/shared/layout/header";
 
 const redHat = Red_Hat_Text({
   subsets: ["latin"],
+});
+
+export const logo = Petit_Formal_Script({
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -20,11 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${redHat.className} antialiased`}>
-        <div className="h-dvh flex flex-col">
-          {children}
-        </div>
-      </body>
+      <body className={`${redHat.className} antialiased`}>{children}</body>
     </html>
   );
 }

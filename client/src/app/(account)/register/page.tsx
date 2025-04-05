@@ -17,7 +17,8 @@ export default function Page() {
           <RegisterForm />
         </div>
         <p className="mt-8 text-center">
-          Already have an account? <Link href={routes.login}>Login</Link>
+          Already have an account?
+          <Link href={routes.login} className="block w-fit m-auto">Login</Link>
         </p>
       </div>
     </div>

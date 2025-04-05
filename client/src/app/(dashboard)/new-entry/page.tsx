@@ -1,13 +1,13 @@
-import Heading, { style } from "@/shared/ui/heading";
+"use client"
+
+import RichTextEditorVorlage from "@/components/richTextEditorVorlage";
+import { style } from "@/shared/ui/heading";
 import clsx from "clsx";
 
 export default function Page() {
   return (
     <form>
       <div className="mb-4">
-        <label htmlFor="title" className="mb-6 block">
-          <Heading type="h1">Create a new entry</Heading>
-        </label>
         <input
           name="title"
           className={clsx(
@@ -18,8 +18,7 @@ export default function Page() {
         />
       </div>
 
-      <textarea className="w-full input" rows={15} placeholder="Write something ..." />
-
+          <RichTextEditorVorlage />
     </form>
   );
 }

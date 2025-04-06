@@ -1,6 +1,6 @@
 import { IconType } from "react-icons";
 import { BsFillKanbanFill } from "react-icons/bs";
-import { FaCalendarAlt, FaNewspaper } from "react-icons/fa";
+import { FaBold, FaCalendarAlt, FaCode, FaHighlighter, FaItalic, FaLink, FaNewspaper, FaStrikethrough, FaUnderline } from "react-icons/fa";
 import { FiChevronsLeft } from "react-icons/fi";
 import { MdAccountBox } from "react-icons/md";
 import { RiLogoutBoxFill } from "react-icons/ri";
@@ -12,6 +12,14 @@ const icons: { [key: string]: IconType } = {
   kanban: BsFillKanbanFill,
   profile: MdAccountBox,
   logout: RiLogoutBoxFill,
+
+  bold: FaBold,
+  italic: FaItalic,
+  underline: FaUnderline,
+  highlight: FaHighlighter,
+  strikethrough: FaStrikethrough,
+  link: FaLink,
+  code: FaCode,
 };
 
 interface Props {

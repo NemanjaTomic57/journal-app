@@ -2,14 +2,16 @@
 
 :root {
   --primary: #26678f;
+  --stone-tint: #e6f4fd;
   --stone: #d3eeff;
-  --stone-shade: #bad6e7;
+  --stone-shade: #93bdd6;
   --background: #ffffff;
   --foreground: #26678f;
 }
 
 @theme inline {
   --color-primary: var(--primary);
+  --color-stone-tint: var(--stone-tint);
   --color-stone: var(--stone);
   --color-stone-shade: var(--stone-shade);
   --color-background: var(--background);
@@ -38,12 +40,38 @@ body {
   @apply rounded-lg;
 }
 
-a {
-  color: var(--primary);
-  font-weight: 600;
+/* HEADINGS */
+h1 {
+  font-size: 4rem;
+  line-height: 1;
+  margin-bottom: 24px;
 }
 
-a:hover {
+h2 {
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+h4 {
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+a, link {
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+a:hover, link:hover {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -93,7 +121,7 @@ a:hover {
 
 .btn-fill-lg {
   background-color: var(--primary);
-  padding: 8px 30px;
+  padding: 8px 40px;
   color: var(--background);
   border: 1px solid transparent;
   transition: 0.2s;
@@ -105,26 +133,15 @@ a:hover {
   border-color: var(--primary);
 }
 
-
-
-/* QUILL */
-.controls {
-  display: flex;
-  border: 1px solid #ccc;
-  border-top: 0;
-  padding: 10px;
+/* TIPTAP */
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
 }
 
-.controls-right {
-  margin-left: auto;
-}
-
-.state {
-  margin: 10px 0;
-  font-family: monospace;
-}
-
-.state-title {
-  color: #999;
-  text-transform: uppercase;
+.tiptap p {
+  margin-bottom: 10px;
 }

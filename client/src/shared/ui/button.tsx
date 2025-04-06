@@ -6,8 +6,6 @@ interface Props {
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
-  style?: "fill" | "stroked";
-  size?: "xl" | "lg" | "md" | "sm";
   className?: string;
   children: React.ReactNode;
 }

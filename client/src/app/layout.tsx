@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Petit_Formal_Script, Red_Hat_Text } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const redHat = Red_Hat_Text({
   subsets: ["latin"],
@@ -24,7 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${redHat.className} antialiased`}>{children}</body>
+      <body className={`${redHat.className} antialiased`}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

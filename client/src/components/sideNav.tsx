@@ -12,9 +12,9 @@ export default function SideNav() {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="p-4 bg-stone sticky! left-0 top-0 h-screen">
+    <div className="p-4 bg-stone sticky left-0 top-0 h-screen">
       <div className="grid gap-2">
-        <div className="flex justify-between items-center text-primary mb-12">
+        <div className="flex justify-between items-center text-primary my-6">
           <AnimatePresence>
             {show && (
               <motion.div
@@ -70,7 +70,10 @@ export default function SideNav() {
           </Button>
         ))}
 
-        <Button className="flex items-center text-primary hover:bg-stone-shade p-3" href={routes.login}>
+        <Button
+          className="flex items-center text-primary hover:bg-stone-shade p-3"
+          href={routes.login}
+        >
           <Icon name="logout" size="lg" />
 
           <AnimatePresence>

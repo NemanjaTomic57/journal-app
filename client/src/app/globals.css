@@ -2,33 +2,45 @@
 
 :root {
   --primary: #26678f;
-  --stone-tint: #e6f4fd;
+  --primary-tone: #237cb4;
   --stone: #d3eeff;
+  --stone-tint: #e6f4fd;
+  --stone-tone: #a7cee4;
   --stone-shade: #93bdd6;
   --background: #ffffff;
   --foreground: #26678f;
+
+  /* SPACING */
+  --y: 20px;
+  --x: 40px;
 }
 
 @theme inline {
   --color-primary: var(--primary);
-  --color-stone-tint: var(--stone-tint);
+  --color-primary-tone: var(--primary-tone);
   --color-stone: var(--stone);
+  --color-stone-tint: var(--stone-tint);
+  --color-stone-tone: var(--stone-tone);
   --color-stone-shade: var(--stone-shade);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --spacing-y: var(--y);
+  --spacing-x: var(--x);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  border-color: var(--primary);
 }
 
 .container {
   max-width: none;
-  padding: 40px;
+  padding: var(--y) var(--x);
 }
 
 .container-center-sm {
@@ -41,28 +53,22 @@ body {
 }
 
 /* HEADINGS */
-h1 {
-  font-size: 4rem;
-  line-height: 1;
-  margin-bottom: 24px;
-}
-
 h2 {
-  font-size: 2.5rem;
   line-height: 1;
   margin-bottom: 20px;
+  @apply text-4xl;
 }
 
 h3 {
-  font-size: 2rem;
   line-height: 1;
   margin-bottom: 16px;
+  @apply text-3xl;
 }
 
 h4 {
-  font-size: 1.4rem;
   line-height: 1;
   margin-bottom: 4px;
+  @apply text-2xl;
 }
 
 a, link {
@@ -74,6 +80,30 @@ a, link {
 a:hover, link:hover {
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+ol, ul {
+  margin-left: 20px;
+}
+
+ol {
+  list-style-type: decimal;
+  ol {
+    list-style-type: upper-roman;
+    ol {
+      list-style-type: lower-roman;
+    }
+  }
+}
+
+ul {
+  list-style-type: disc;
+  ul {
+    list-style-type: circle;
+    ul {
+      list-style-type: square;
+    }
+  }
 }
 
 .input-label {
@@ -116,6 +146,7 @@ a:hover, link:hover {
 .btn {
   text-decoration: none !important;
   cursor: pointer;
+  transition: 0.225s;
   @apply rounded-md;
 }
 
@@ -124,13 +155,24 @@ a:hover, link:hover {
   padding: 8px 40px;
   color: var(--background);
   border: 1px solid transparent;
-  transition: 0.2s;
 }
 
 .btn-fill-lg:hover {
   background-color: var(--background);
   color: var(--primary);
   border-color: var(--primary);
+}
+
+.btn-fill-sm {
+  padding: 1px 14px;
+  border: 1px solid transparent;
+  @apply rounded-sm;
+}
+
+.btn-stroke-sm {
+  background-color: transparent;
+  padding: 1px 14px;
+  @apply rounded-sm;
 }
 
 /* TIPTAP */
@@ -143,5 +185,5 @@ a:hover, link:hover {
 }
 
 .tiptap p {
-  margin-bottom: 10px;
+  margin-block: 7px;
 }

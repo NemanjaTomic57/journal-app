@@ -6,13 +6,15 @@ import Heading from "@/shared/ui/heading";
 import Icon from "@/shared/ui/icon";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "motion/react";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function SideNav() {
   const [show, setShow] = useState(false);
+  const path = usePathname().split("/").pop() || "";
 
   return (
-    <div className="p-4 bg-stone sticky left-0 top-0 h-screen">
+    <div className="p-4 bg-stone sticky left-0 top-0 h-screen border-r-1">
       <div className="grid gap-2">
         <div className="flex justify-between items-center text-primary my-6">
           <AnimatePresence>
@@ -51,7 +53,7 @@ export default function SideNav() {
           <Button
             key={index}
             href={section.link}
-            className="flex items-center text-primary hover:bg-stone-shade p-3"
+            className={clsx("flex items-center text-primary hover:bg-stone-shade p-3", section.link.includes(path) && "bg-stone-tone")}
           >
             <Icon name={section.icon} size="lg" />
 

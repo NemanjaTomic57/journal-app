@@ -1,12 +1,14 @@
 import { IconType } from "react-icons";
 import { BsFillKanbanFill } from "react-icons/bs";
-import { FaBold, FaCalendarAlt, FaCode, FaHighlighter, FaItalic, FaLink, FaNewspaper, FaStrikethrough, FaUnderline } from "react-icons/fa";
-import { FiChevronsLeft } from "react-icons/fi";
+import { FaBold, FaCalendarAlt, FaCalendarDay, FaCalendarWeek, FaCode, FaHighlighter, FaItalic, FaLink, FaListOl, FaListUl, FaNewspaper, FaPrint, FaSlash, FaStrikethrough, FaUnderline } from "react-icons/fa";
+import { FaCalendarDays } from "react-icons/fa6";
+import { FiChevronLeft, FiChevronsLeft } from "react-icons/fi";
 import { MdAccountBox } from "react-icons/md";
 import { RiLogoutBoxFill } from "react-icons/ri";
 
 const icons: { [key: string]: IconType } = {
   chevsLeft: FiChevronsLeft,
+  chevLeft: FiChevronLeft,
   newEntry: FaNewspaper,
   calendar: FaCalendarAlt,
   kanban: BsFillKanbanFill,
@@ -20,6 +22,14 @@ const icons: { [key: string]: IconType } = {
   strikethrough: FaStrikethrough,
   link: FaLink,
   code: FaCode,
+  bulletList: FaListUl,
+  orderedList: FaListOl,
+  divider: FaSlash,
+
+  print: FaPrint,
+  week: FaCalendarDay,
+  month: FaCalendarWeek,
+  year: FaCalendarDays
 };
 
 interface Props {

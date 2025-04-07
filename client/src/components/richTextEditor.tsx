@@ -15,15 +15,21 @@ import clsx from "clsx";
 import Underline from "@tiptap/extension-underline";
 import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
-import { forwardRef, Ref, useCallback, useImperativeHandle, useRef, useState } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { useOnClickOutside } from "@/shared/libs/useOnClickOutside";
 import { RichTextEditorHandle } from "@/app/(dashboard)/new-entry/page";
+import OrderedList from "@tiptap/extension-ordered-list";
+import BulletList from "@tiptap/extension-bullet-list";
+import ListItem from '@tiptap/extension-list-item'
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
 
 const headings = [
-  {
-    text: "Title",
-    level: 1,
-  },
   {
     text: "Heading 1",
     level: 2,
@@ -43,9 +49,9 @@ const menuButtonStyle =
 
 const isActive = "bg-stone!";
 
-const RichTextEditor = forwardRef<RichTextEditorHandle>((props, ref) => {
+const RichTextEditor = forwardRef<RichTextEditorHandle>((_props, ref) => {
   const [showHeadingDd, setShowHeadingDd] = useState(false);
-  const [currentHeading, setCurrentHeading] = useState("Heading");
+  const [currentHeading, setCurrentHeading] = useState("Title");
   const headingDdRef = useRef(null);
 
   useOnClickOutside(headingDdRef, () => setShowHeadingDd(false));
@@ -59,6 +65,10 @@ const RichTextEditor = forwardRef<RichTextEditorHandle>((props, ref) => {
       Bold,
       Italic,
       Strike,
+      BulletList,
+      OrderedList,
+      ListItem,
+      HorizontalRule,
       Highlight.configure({ multicolor: true }),
       Link.configure({
         openOnClick: false,
@@ -69,23 +79,24 @@ const RichTextEditor = forwardRef<RichTextEditorHandle>((props, ref) => {
         },
       }),
       Heading.configure({
-        levels: [1, 2, 3, 4],
+        levels: [2, 3, 4],
       }),
       Placeholder.configure({
         emptyEditorClass: "is-editor-empty",
         placeholder: "Write something amazing in your journal ...",
-      })
+      }),
     ],
     editorProps: {
       attributes: {
-        class: "outline-none h-[500px]",
+        class: "outline-none h-[65dvh]",
       },
     },
+    immediatelyRender: false,
   });
 
   useImperativeHandle(ref, () => ({
     getHTML: () => editor?.getHTML(),
-  }))
+  }));
 
   const setLink = useCallback(() => {
     const previousUrl = editor?.getAttributes("link").href;
@@ -188,7 +199,7 @@ const RichTextEditor = forwardRef<RichTextEditorHandle>((props, ref) => {
           <Icon name="link" />
         </Button>
 
-        <div ref={headingDdRef} className="relative w-[100px]">
+        <div ref={headingDdRef} className="relative w-[100px] mr-8">
           <Button
             className={clsx(
               menuButtonStyle,
@@ -212,6 +223,7 @@ const RichTextEditor = forwardRef<RichTextEditorHandle>((props, ref) => {
                       .toggleHeading({ level: heading.level as Level })
                       .run();
                     setCurrentHeading(heading.text);
+                    setShowHeadingDd(false);
                   }}
                   className={clsx(
                     menuButtonStyle,
@@ -226,8 +238,35 @@ const RichTextEditor = forwardRef<RichTextEditorHandle>((props, ref) => {
             </div>
           )}
         </div>
+
+        <Button
+          className={clsx(
+            menuButtonStyle,
+            editor?.isActive("orderedList") && isActive
+          )}
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+        >
+          <Icon name="orderedList" />
+        </Button>
+
+        <Button
+          className={clsx(
+            menuButtonStyle,
+            editor?.isActive("bulletList") && isActive
+          )}
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+        >
+          <Icon name="bulletList" />
+        </Button>
+
+        <Button
+          className={clsx(menuButtonStyle)}
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}
+        >
+          <Icon name="divider" />
+        </Button>
       </div>
-      <EditorContent editor={editor} className="input border-0!" />
+      <EditorContent editor={editor} className="input py-0! border-0!" />
     </div>
   );
 });

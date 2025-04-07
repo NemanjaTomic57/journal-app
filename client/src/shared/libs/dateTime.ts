@@ -10,6 +10,21 @@ export const dateTime = (dateTime: Date | string) => {
   return `${day}.${month}.${year} at ${hours}:${minutes}`;
 };
 
+export const monthOnly = (dateTime: Date | string) => {
+  const parsedDate = dateTime instanceof Date ? dateTime : new Date(dateTime);
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const month = monthNames[parsedDate.getMonth()];
+  const year = parsedDate.getFullYear();
+
+  return `${month} ${year}`;
+};
+
+
 export const dateOnly = (dateTime: Date | string) => {
   const parsedDate = dateTime instanceof Date ? dateTime : new Date(dateTime);
 

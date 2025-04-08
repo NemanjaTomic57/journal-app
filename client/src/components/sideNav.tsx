@@ -9,6 +9,11 @@ import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+const motionProps = {
+  transition: { duration: 0.3, ease: "easeInOut" },
+  transitionSpring: {type: "spring", duration: .7, bounce: .5}
+};
+
 export default function SideNav() {
   const [show, setShow] = useState(false);
   const path = usePathname().split("/").pop() || "";
@@ -28,6 +33,7 @@ export default function SideNav() {
                   opacity: 0,
                   marginInline: 0,
                 }}
+                transition={motionProps.transition}
                 className="overflow-hidden"
               >
                 <Heading type="h3" className={clsx("font-semibold")}>
@@ -37,23 +43,24 @@ export default function SideNav() {
             )}
           </AnimatePresence>
 
-          <div
+          <motion.div
+            animate={{ rotate: show ? "0deg" : "-180deg" }}
+            transition={motionProps.transitionSpring}
             onClick={() => setShow(!show)}
-            className="hover:bg-stone-shade rounded-lg transition m-auto p-2 cursor-pointer"
+            className="hover:bg-stone-shade rounded-lg m-auto p-2 cursor-pointer"
           >
-            <Icon
-              name="chevsLeft"
-              size="lg"
-              className={clsx(!show && "rotate-180")}
-            />
-          </div>
+            <Icon name="chevsLeft" size="lg" />
+          </motion.div>
         </div>
 
         {sections.map((section, index) => (
           <Button
             key={index}
             href={section.link}
-            className={clsx("flex items-center text-primary hover:bg-stone-shade p-3", section.link.includes(path) && "bg-stone-tone")}
+            className={clsx(
+              "flex items-center text-primary hover:bg-stone-shade p-3",
+              section.link.includes(path) && "bg-stone-tone"
+            )}
           >
             <Icon name={section.icon} size="lg" />
 
@@ -63,6 +70,7 @@ export default function SideNav() {
                   initial={{ width: 0, opacity: 0, marginLeft: "0px" }}
                   animate={{ width: "auto", opacity: 1, marginLeft: "12px" }}
                   exit={{ width: 0, opacity: 0, marginLeft: "0px" }}
+                  transition={motionProps.transition}
                   className="overflow-hidden text-nowrap"
                 >
                   <Heading type="h4">{section.text}</Heading>
@@ -84,6 +92,7 @@ export default function SideNav() {
                 initial={{ width: 0, opacity: 0, marginLeft: "0px" }}
                 animate={{ width: "auto", opacity: 1, marginLeft: "12px" }}
                 exit={{ width: 0, opacity: 0, marginLeft: "0px" }}
+                transition={motionProps.transition}
                 className="overflow-hidden text-nowrap"
               >
                 <Heading type="h4">Logout</Heading>

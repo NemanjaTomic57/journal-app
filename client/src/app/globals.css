@@ -3,6 +3,7 @@
 :root {
   --primary: #26678f;
   --primary-tone: #237cb4;
+  --secondary: #02a892;
   --stone: #c7e5f8;
   --stone-tint: #e6f4fd;
   --stone-tone: #a7cee4;
@@ -18,6 +19,7 @@
 @theme inline {
   --color-primary: var(--primary);
   --color-primary-tone: var(--primary-tone);
+  --color-secondary: var(--secondary);
   --color-stone: var(--stone);
   --color-stone-tint: var(--stone-tint);
   --color-stone-tone: var(--stone-tone);
@@ -182,8 +184,4 @@ ul {
   float: left;
   height: 0;
   pointer-events: none;
-}
-
-.tiptap p {
-  margin-block: 7px;
 }

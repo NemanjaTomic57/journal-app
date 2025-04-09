@@ -12,7 +12,7 @@ export default function Layout({
     <div className="flex">
       <SideNav />
 
-      <div className="overflow-auto w-full">
+      <div className="overflow-auto w-full h-dvh flex flex-col">
         <div className="container flex justify-end gap-10 items-end">
           <Heading type="h4">{dateOnly(today)}</Heading>
           <Logo />

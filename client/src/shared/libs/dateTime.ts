@@ -56,7 +56,30 @@ export const timeOnly = (dateTime: Date | string) => {
 export const getDaysInMonth = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth();
-  const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  const daysInMonth = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDate();
 
-  return Array.from({ length: daysInMonth }, (_, i) => new Date(year, month, i + 1));
+  return Array.from(
+    { length: daysInMonth },
+    (_, i) => new Date(year, month, i + 1)
+  );
+};
+
+export const getCalendarWeek = (date: Date) => {
+  var date = new Date(date);
+  date.setHours(0, 0, 0, 0);
+  date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
+  var week1 = new Date(date.getFullYear(), 0, 4);
+  return (
+    1 +
+    Math.round(
+      ((date.getTime() - week1.getTime()) / 86400000 -
+        3 +
+        ((week1.getDay() + 6) % 7)) /
+        7
+    )
+  );
 };

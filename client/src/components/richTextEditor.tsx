@@ -26,7 +26,7 @@ import { useOnClickOutside } from "@/shared/libs/useOnClickOutside";
 import { RichTextEditorHandle } from "@/app/(dashboard)/new-entry/page";
 import OrderedList from "@tiptap/extension-ordered-list";
 import BulletList from "@tiptap/extension-bullet-list";
-import ListItem from '@tiptap/extension-list-item'
+import ListItem from "@tiptap/extension-list-item";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
 
 const headings = [
@@ -51,7 +51,7 @@ const isActive = "bg-stone!";
 
 const RichTextEditor = forwardRef<RichTextEditorHandle>((_props, ref) => {
   const [showHeadingDd, setShowHeadingDd] = useState(false);
-  const [currentHeading, setCurrentHeading] = useState("Title");
+  const [currentHeading, setCurrentHeading] = useState("Heading");
   const headingDdRef = useRef(null);
 
   useOnClickOutside(headingDdRef, () => setShowHeadingDd(false));
@@ -88,7 +88,7 @@ const RichTextEditor = forwardRef<RichTextEditorHandle>((_props, ref) => {
     ],
     editorProps: {
       attributes: {
-        class: "outline-none h-[65dvh]",
+        class: "outline-none w-full min-h-full p-[16px]",
       },
     },
     immediatelyRender: false,
@@ -129,8 +129,8 @@ const RichTextEditor = forwardRef<RichTextEditorHandle>((_props, ref) => {
   }
 
   return (
-    <div className="input p-0! overflow-scroll">
-      <div className="sticky top-0 flex border-b-1 z-100 mb-4 bg-background">
+    <div className="input p-0! overflow-hidden flex! flex-col flex-1">
+      <div className="sticky top-0 flex border-b-1 z-100 bg-background">
         <Button
           className={clsx(
             menuButtonStyle,
@@ -266,7 +266,13 @@ const RichTextEditor = forwardRef<RichTextEditorHandle>((_props, ref) => {
           <Icon name="divider" />
         </Button>
       </div>
-      <EditorContent editor={editor} className="input py-0! border-0!" />
+
+      <div className="flex-1 overflow-auto">
+        <EditorContent
+          editor={editor}
+          className="h-full"
+        />
+      </div>
     </div>
   );
 });

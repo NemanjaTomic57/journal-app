@@ -1,16 +1,18 @@
 "use client";
 
-import { getCalendarWeek, getDaysInMonth } from "@/shared/libs/dateTime";
-import CalendarHeader from "./calendarHeader";
-import { useEffect, useState } from "react";
+import { weekdayStrings } from "@/shared/data/calendar";
+import { getDaysInMonth, getCalendarWeek } from "@/shared/libs/dateTime";
 import clsx from "clsx";
+import { useState, useEffect } from "react";
 
-export default function CalendarBody() {
-  const [date, setDate] = useState<Date>(new Date());
+interface Props {
+  date: Date;
+}
+
+export default function CalendarMonth({ date }: Props) {
   const [days, setDays] = useState<Date[] | null>(null);
 
   const getPrevDays = (currentDays: Date[]) => {
-    // weekdays: 0 .. 6 = SUN .. SAT
     const weekday = currentDays[0].getDay();
     const lastMonth = new Date(date);
     lastMonth.setMonth(lastMonth.getMonth() - 1);
@@ -53,25 +55,18 @@ export default function CalendarBody() {
   }, [date]);
 
   return (
-    <div className="flex flex-col flex-1">
-      <CalendarHeader date={date} setDate={setDate} />
-      <div className="grid grid-cols-7 place-items-center py-2 bg-stone text-sm">
-        <p>MON</p>
-        <p>TUE</p>
-        <p>WED</p>
-        <p>THU</p>
-        <p>FRI</p>
-        <p>SAT</p>
-        <p>SUN</p>
+    <>
+      <div className="grid grid-cols-7 place-items-center py-2 bg-stone text-sm border-b-2 border-primary-tone">
+        {weekdayStrings.map(day => (
+          <p key={day}>{day}</p>
+        ))}
       </div>
 
-      <div className="grid grid-cols-7 divide-x divide-y divide-stone-shade border-t border-stone-shade flex-1">
+      <div className="grid grid-cols-7 divide-x divide-y divide-stone-shade  border-stone-shade flex-1">
         {days &&
           days.map((day, index) => {
             const isFirstInRow = index % 7 === 0;
-
             const calendarWeek = getCalendarWeek(day);
-
             return (
               <div
                 key={index}
@@ -90,6 +85,6 @@ export default function CalendarBody() {
             );
           })}
       </div>
-    </div>
+    </>
   );
 }

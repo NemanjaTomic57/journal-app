@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.4);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 100, 100, 0.6);
+}
+
 :root {
   --primary: #26678f;
   --primary-tone: #237cb4;
@@ -73,18 +93,21 @@ h4 {
   @apply text-2xl;
 }
 
-a, link {
+a,
+link {
   color: var(--primary);
   font-weight: 600;
   cursor: pointer;
 }
 
-a:hover, link:hover {
+a:hover,
+link:hover {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-ol, ul {
+ol,
+ul {
   margin-left: 20px;
 }
 

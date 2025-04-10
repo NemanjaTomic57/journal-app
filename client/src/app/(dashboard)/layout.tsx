@@ -1,6 +1,6 @@
 import Logo from "@/components/logo";
 import SideNav from "@/components/sideNav";
-import { dateOnly } from "@/shared/libs/dateTime";
+import { getDateOnly } from "@/shared/libs/dateTime";
 import Heading from "@/shared/ui/heading";
 
 export default function Layout({
@@ -13,8 +13,8 @@ export default function Layout({
       <SideNav />
 
       <div className="overflow-auto w-full h-dvh flex flex-col">
-        <div className="container flex justify-end gap-10 items-end">
-          <Heading type="h4">{dateOnly(today)}</Heading>
+        <div className="container py-3! flex justify-end gap-10 items-end">
+          <Heading type="h4">{getDateOnly(today)}</Heading>
           <Logo />
         </div>
         {children}

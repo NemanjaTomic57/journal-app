@@ -19,7 +19,7 @@ export default function SideNav() {
   const path = usePathname().split("/").pop() || "";
 
   return (
-    <div className="p-4 bg-stone sticky left-0 top-0 h-screen border-r-1">
+    <div className="p-1 bg-stone sticky left-0 top-0 h-screen border-r-1">
       <div className="grid gap-2">
         <div className="flex justify-between items-center text-primary my-6">
           <AnimatePresence>
@@ -58,7 +58,7 @@ export default function SideNav() {
             key={index}
             href={section.link}
             className={clsx(
-              "flex items-center text-primary hover:bg-stone-shade p-3",
+              "flex items-center text-primary hover:bg-stone-shade p-2",
               section.link.includes(path) && "bg-stone-tone"
             )}
           >
@@ -81,7 +81,7 @@ export default function SideNav() {
         ))}
 
         <Button
-          className="flex items-center text-primary hover:bg-stone-shade p-3"
+          className="flex items-center text-primary hover:bg-stone-shade p-2"
           href={routes.login}
         >
           <Icon name="logout" size="lg" />

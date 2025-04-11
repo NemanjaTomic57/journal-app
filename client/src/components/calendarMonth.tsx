@@ -1,7 +1,7 @@
 "use client";
 
 import { weekdayStrings } from "@/shared/data/calendar";
-import { getDaysInMonth, getCalendarWeek } from "@/shared/libs/dateTime";
+import { getExtendedMonth, getCalendarWeek } from "@/shared/libs/dateTime";
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 
@@ -12,45 +12,10 @@ interface Props {
 export default function CalendarMonth({ date }: Props) {
   const [days, setDays] = useState<Date[] | null>(null);
 
-  const getPrevDays = (currentDays: Date[]) => {
-    const weekday = currentDays[0].getDay();
-    const lastMonth = new Date(date);
-    lastMonth.setMonth(lastMonth.getMonth() - 1);
-    const lastMonthsDays = getDaysInMonth(lastMonth);
-
-    switch (weekday) {
-      case 1:
-        return [];
-      case 0:
-        return lastMonthsDays.slice(-5);
-      default:
-        return lastMonthsDays.slice(-(weekday - 1));
-    }
-  };
-
-  const getFolDays = (currentDays: Date[]) => {
-    const nextMonth = new Date(date);
-    nextMonth.setMonth(nextMonth.getMonth() + 1);
-    const nextMonthsDays = getDaysInMonth(nextMonth);
-
-    const nMissingDays = 7 - (currentDays.length % 7);
-
-    console.log(nMissingDays);
-
-    switch (nMissingDays) {
-      case 7:
-        return [];
-      default:
-        return nextMonthsDays.slice(0, nMissingDays);
-    }
-  };
-
   useEffect(() => {
     setDays(() => {
-      const currentDays = getDaysInMonth(date);
-      const prevDays = getPrevDays(currentDays);
-      const folDays = getFolDays([...prevDays, ...currentDays]);
-      return [...prevDays, ...currentDays, ...folDays];
+      const extendedMonth = getExtendedMonth(date);
+      return [...extendedMonth];
     });
   }, [date]);
 

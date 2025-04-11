@@ -37,6 +37,8 @@ export default function CalendarHeader({
         newDate.setDate(newDate.getDate() - 7);
       } else if (timespan === timespanDd[1].text) {
         newDate.setMonth(newDate.getMonth() - 1);
+      } else if (timespan === timespanDd[2].text) {
+        newDate.setFullYear(newDate.getFullYear() - 1);
       }
       return newDate;
     });
@@ -49,6 +51,8 @@ export default function CalendarHeader({
         newDate.setDate(newDate.getDate() + 7);
       } else if (timespan === timespanDd[1].text) {
         newDate.setMonth(newDate.getMonth() + 1);
+      } else if (timespan === timespanDd[2].text) {
+        newDate.setFullYear(newDate.getFullYear() + 1);
       }
       return newDate;
     });
@@ -79,6 +83,10 @@ export default function CalendarHeader({
 
         {timespan === timespanDd[1].text && (
           <p className="w-[11rem] text-center">{getMonthOnly(date)}</p>
+        )}
+
+        {timespan === timespanDd[2].text && (
+          <p className="w-[11rem] text-center">{date.getFullYear()}</p>
         )}
 
         <Button onClick={incrementDate} className={iconButton}>

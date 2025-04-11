@@ -24,7 +24,7 @@ export default function Page() {
 
   return (
     <div className="container pt-0! flex-1 flex flex-col overflow-hidden">
-      <div className="flex justify-between items-center mb-4 gap-20">
+      <div className="flex justify-between items-end mb-4 gap-20">
         <input
           placeholder="Title"
           className="text-5xl border-b-1 w-full outline-0 px-4"

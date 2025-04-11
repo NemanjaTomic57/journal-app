@@ -189,14 +189,14 @@ ul {
 }
 
 .btn-fill-sm {
-  padding: 1px 14px;
+  padding: 3px 14px;
   border: 1px solid transparent;
   @apply rounded-sm;
 }
 
 .btn-stroke-sm {
   background-color: transparent;
-  padding: 1px 14px;
+  padding: 3px 14px;
   @apply rounded-sm;
 }
 

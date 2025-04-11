@@ -43,7 +43,7 @@ export default function CalendarWeek({ date }: Props) {
         }}
       >
         {Array.from({ length: 8 }).map((_, colIdx) => (
-          <div className="border-r border-stone h-4"></div>
+          <div key={colIdx} className="border-r border-stone h-4"></div>
         ))}
         {timeslots.map((slot, rowIdx) => (
           <div key={rowIdx} className="contents">

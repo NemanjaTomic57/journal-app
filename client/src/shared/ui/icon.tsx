@@ -1,7 +1,8 @@
 import { IconType } from "react-icons";
 import { BsFillKanbanFill } from "react-icons/bs";
-import { FaBold, FaCalendarAlt, FaCalendarDay, FaCalendarWeek, FaCode, FaHighlighter, FaItalic, FaLink, FaListOl, FaListUl, FaNewspaper, FaPrint, FaSlash, FaStrikethrough, FaUnderline } from "react-icons/fa";
+import { FaBold, FaCalendarAlt, FaCalendarDay, FaCalendarWeek, FaCode, FaHighlighter, FaItalic, FaLink, FaListOl, FaListUl, FaNewspaper, FaPlus, FaPrint, FaSave, FaSlash, FaStrikethrough, FaUnderline } from "react-icons/fa";
 import { FaCalendarDays } from "react-icons/fa6";
+import { FcHighPriority, FcLowPriority, FcMediumPriority } from "react-icons/fc";
 import { FiChevronLeft, FiChevronsLeft } from "react-icons/fi";
 import { MdAccountBox } from "react-icons/md";
 import { RiLogoutBoxFill } from "react-icons/ri";
@@ -15,6 +16,7 @@ const icons: { [key: string]: IconType } = {
   profile: MdAccountBox,
   logout: RiLogoutBoxFill,
 
+  save: FaSave,
   bold: FaBold,
   italic: FaItalic,
   underline: FaUnderline,
@@ -29,7 +31,12 @@ const icons: { [key: string]: IconType } = {
   print: FaPrint,
   week: FaCalendarDay,
   month: FaCalendarWeek,
-  year: FaCalendarDays
+  year: FaCalendarDays,
+
+  plus: FaPlus,
+  prioHigh: FcHighPriority,
+  prioMedium: FcMediumPriority,
+  prioLow: FcLowPriority,
 };
 
 interface Props {

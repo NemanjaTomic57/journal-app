@@ -1,6 +1,6 @@
 "use client";
 
-import { weekdayStrings } from "@/shared/data/calendar";
+import { weekdayStrings } from "@/shared/content/calendar";
 import { getWeekdays } from "@/shared/libs/dateTime";
 import clsx from "clsx";
 import { useEffect, useState } from "react";

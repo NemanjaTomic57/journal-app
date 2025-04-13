@@ -2,7 +2,7 @@
 
 import { getMonthAndWeek, getMonthOnly } from "@/shared/libs/dateTime";
 import { useOnClickOutside } from "@/shared/libs/useOnClickOutside";
-import { timespanDd } from "@/shared/data/calendar";
+import { timespanDd } from "@/shared/content/calendar";
 import Button from "@/shared/ui/button";
 import Icon from "@/shared/ui/icon";
 import clsx from "clsx";

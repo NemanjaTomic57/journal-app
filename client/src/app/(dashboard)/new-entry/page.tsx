@@ -3,6 +3,7 @@
 import RichTextEditor from "@/components/richTextEditor";
 import { useInputPlaceholder } from "@/shared/libs/useInputPlaceholder";
 import Button from "@/shared/ui/button";
+import Icon from "@/shared/ui/icon";
 import { useRef } from "react";
 import toast from "react-hot-toast";
 
@@ -29,7 +30,8 @@ export default function Page() {
           placeholder="Title"
           className="text-5xl border-b-1 w-full outline-0 px-4"
         />
-        <Button className="btn-fill-lg" onClick={handleSubmit}>
+        <Button className="btn-fill-lg flex items-center gap-2" onClick={handleSubmit}>
+          <Icon name="save" />
           Save
         </Button>
       </div>

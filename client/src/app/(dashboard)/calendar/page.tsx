@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { timespanDd } from "@/shared/data/calendar";
+import { timespanDd } from "@/shared/content/calendar";
 import CalendarHeader from "@/components/calendarHeader";
 import CalendarMonth from "@/components/calendarMonth";
 import CalendarWeek from "@/components/calendarWeek";

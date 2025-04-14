@@ -23,14 +23,14 @@ export default function Button({
       {href ? (
         <Link
           href={href}
-          className={clsx("btn", className)}
+          className={clsx("btn flex items-center gap-1", className)}
         >
           {children}
         </Link>
       ) : (
         <button
           onClick={onClick}
-          className={clsx("btn", className)}
+          className={clsx("btn flex items-center gap-1", className)}
           type={type}
           disabled={disabled}
         >

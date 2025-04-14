@@ -1,48 +1,34 @@
-import KanbanTaskPrio from "@/components/kanbanTaskPrio";
-import KanbanTaskTags from "@/components/kanbanTaskTags";
-import { Priority } from "@/shared/interfaces/task";
-import { getDateOnly } from "@/shared/libs/dateTime";
+import KanbanColumn from "@/components/kanbanColumn";
+import { Priority, Status } from "@/shared/interfaces/task";
 import Button from "@/shared/ui/button";
 import Heading from "@/shared/ui/heading";
 import Icon from "@/shared/ui/icon";
 
 export default function Page() {
   return (
-    <div className="container">
-      <div className="flex gap-12 items-center">
-        <Heading type="h2">Kanban</Heading>
-
-        <Button className="btn-fill-lg flex gap-2 items-center">
-          <Icon name="plus" />
-          Create Task
-        </Button>
-      </div>
-
-      <div className="flex justify-between">
-        <div>
-          <Heading type="h3">Backlog</Heading>
-
-          <div>
-            {tasks.map((task, index) => (
-              <div key={index} className="grid grid-cols-2 p-4">
-                <div>
-                  <KanbanTaskPrio prio={task.priority} />
-                  <KanbanTaskTags tags={task.tags} />
-                </div>
-                <div>
-                  <Heading type="h4">{task.title}</Heading>
-                  <p>{task.description}</p>
-                  <p className="col-start-2 bg-stone text-sm rounded-md w-fit px-2 py-0.5 mt-2">
-                    Due date:{" "}
-                    <span className="font-semibold">
-                      {getDateOnly(task.createdAt)}
-                    </span>
-                  </p>
-                </div>
-              </div>
-            ))}
+    <div className="container flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 grid grid-cols-4 gap-4 overflow-hidden">
+        <KanbanColumn tasks={tasks}>
+          <div className="flex justify-between items-center">
+            <Heading type="h3">Backlog</Heading>
+            <Button className="btn-stroke-sm border-background border-1 hover:bg-primary-tone">
+              <Icon name="plus" />
+              New Task
+            </Button>
           </div>
-        </div>
+        </KanbanColumn>
+
+        <KanbanColumn>
+          <Heading type="h3">To Do</Heading>
+        </KanbanColumn>
+
+        <KanbanColumn>
+          <Heading type="h3">In Progress</Heading>
+        </KanbanColumn>
+
+        <KanbanColumn>
+          <Heading type="h3">Done</Heading>
+        </KanbanColumn>
       </div>
     </div>
   );
@@ -57,6 +43,8 @@ const tasks = [
     priority: Priority.Low,
     tags: ["NextJS", "Asp.Net Core"],
     effortEstimate: "10 days",
+    dueDate: new Date("2024-01-01"),
+    status: Status.Backlog,
   },
 
   {
@@ -67,6 +55,8 @@ const tasks = [
     priority: Priority.Medium,
     tags: ["Machine Learning"],
     effortEstimate: "3 months",
+    dueDate: new Date("2024-01-01"),
+    status: Status.Backlog,
   },
 
   {
@@ -77,5 +67,73 @@ const tasks = [
     priority: Priority.High,
     tags: ["Machine Learning"],
     effortEstimate: "4 months",
+    dueDate: new Date("2024-01-01"),
+    status: Status.Backlog,
+  },
+
+  {
+    createdAt: new Date(),
+    title: "Create Journal App",
+    description:
+      "The user is able to create journal entries, appointments, tasks in kanban and manage all those properties in his dashboard.",
+    priority: Priority.Low,
+    tags: ["NextJS", "Asp.Net Core"],
+    effortEstimate: "10 days",
+    dueDate: new Date("2024-01-01"),
+  },
+
+  {
+    createdAt: new Date(),
+    title: "Learn Mathematics for ML",
+    description:
+      "You should master the basics in Calculus, Probability, Linear Algebra, and Optimization.",
+    priority: Priority.Medium,
+    tags: ["Machine Learning"],
+    effortEstimate: "3 months",
+    dueDate: new Date("2024-01-01"),
+  },
+
+  {
+    createdAt: new Date(),
+    title: "Complete the Data Scientist Course",
+    description:
+      "Complete the Data Scientist Course with a grade of 2 or higher. The project should have an extra high priority.",
+    priority: Priority.High,
+    tags: ["Machine Learning"],
+    effortEstimate: "4 months",
+    dueDate: new Date("2024-01-01"),
+  },
+
+  {
+    createdAt: new Date(),
+    title: "Create Journal App",
+    description:
+      "The user is able to create journal entries, appointments, tasks in kanban and manage all those properties in his dashboard.",
+    priority: Priority.Low,
+    tags: ["NextJS", "Asp.Net Core"],
+    effortEstimate: "10 days",
+    dueDate: new Date("2024-01-01"),
+  },
+
+  {
+    createdAt: new Date(),
+    title: "Learn Mathematics for ML",
+    description:
+      "You should master the basics in Calculus, Probability, Linear Algebra, and Optimization.",
+    priority: Priority.Medium,
+    tags: ["Machine Learning"],
+    effortEstimate: "3 months",
+    dueDate: new Date("2024-01-01"),
+  },
+
+  {
+    createdAt: new Date(),
+    title: "Complete the Data Scientist Course",
+    description:
+      "Complete the Data Scientist Course with a grade of 2 or higher. The project should have an extra high priority.",
+    priority: Priority.High,
+    tags: ["Machine Learning"],
+    effortEstimate: "4 months",
+    dueDate: new Date("2024-01-01"),
   },
 ];

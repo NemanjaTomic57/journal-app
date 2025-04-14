@@ -8,8 +8,8 @@ interface Props {
 
 export const style = {
     h1: "text-5xl font-semibold",
-    h2: "text-4xl",
-    h3: "text-2xl",
+    h2: "text-4xl font-semibold",
+    h3: "text-2xl font-semibold",
     h4: "text-1xl font-semibold",
 }
 

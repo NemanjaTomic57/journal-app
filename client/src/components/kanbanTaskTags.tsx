@@ -8,7 +8,7 @@ export default function KanbanTaskTags({ tags }: Props) {
       {tags.map((tag, index) => (
         <div
           key={index}
-          className="p-1.5 text-sm bg-secondary w-fit h-fit rounded-sm text-background font-semibold"
+          className="bg-secondary w-fit h-fit rounded-sm text-background font-semibold px-1.5 py-0.5 text-xs"
         >
           {tag}
         </div>

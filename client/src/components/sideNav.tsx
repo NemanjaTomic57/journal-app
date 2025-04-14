@@ -19,7 +19,7 @@ export default function SideNav() {
   const path = usePathname().split("/").pop() || "";
 
   return (
-    <div className="p-1 bg-stone sticky left-0 top-0 h-screen border-r-1">
+    <div className="p-1 bg-stone sticky left-0 top-0 h-screen">
       <div className="grid gap-2">
         <div className="flex justify-between items-center text-primary my-6">
           <AnimatePresence>
@@ -36,7 +36,7 @@ export default function SideNav() {
                 transition={motionProps.transition}
                 className="overflow-hidden"
               >
-                <Heading type="h3" className={clsx("font-semibold")}>
+                <Heading type="h3">
                   Dashboard
                 </Heading>
               </motion.div>

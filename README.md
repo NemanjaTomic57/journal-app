@@ -35,4 +35,5 @@ A simple custom journal app to document your day-to-day life. Create, save, and 
   - Priority & status  
   - Due date & tags  
   - Effort estimate & dependencies  
-  - Attachments  
+  - Attachments (e.g. PDF, Images, or Spreadsheets)
+

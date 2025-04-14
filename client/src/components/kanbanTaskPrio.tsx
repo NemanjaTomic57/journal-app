@@ -12,5 +12,5 @@ interface Props {
 }
 
 export default function KanbanTaskPrio({ prio }: Props) {
-  return <Icon name={priorityIconMap[prio]} className="mb-2" size="lg" />;
+  return <Icon name={priorityIconMap[prio]} size="lg" />;
 }

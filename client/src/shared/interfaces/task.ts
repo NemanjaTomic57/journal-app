@@ -1,8 +1,19 @@
+export interface Task {
+    title: string;
+    description: string;
+    priority: Priority;
+    status: Status;
+    tags: string[];
+    createdAt: Date;
+    effortEstimate: string;
+    dueDate: Date;
+}
+
 export enum Status {
-    Backlog,
-    "To Do",
-    "In Progress",
-    Done,
+    Backlog = "Backlog",
+    ToDo = "To Do",
+    InProgress = "In Progress",
+    Done = "Done",
 }
 
 export enum Priority {
@@ -11,12 +22,8 @@ export enum Priority {
     High,
 }
 
-export interface Task {
-    title: string;
-    description: string;
-    priority: Priority;
-    status?: Status;
-    tags: string[];
-    createdAt: Date;
-    effortEstimate: string;
+export const priorityIconMap: Record<Priority, string> = {
+    [Priority.Low]: "prioLow",
+    [Priority.Medium]: "prioMedium",
+    [Priority.High]: "prioHigh",
 }

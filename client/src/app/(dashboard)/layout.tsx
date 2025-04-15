@@ -14,7 +14,7 @@ export default function Layout({
 
       <div className="overflow-auto w-full h-dvh flex flex-col">
         <div className="container py-3! flex justify-end gap-10 items-end">
-          <Heading type="h4">{getDateOnly(today)}</Heading>
+          <Heading type="h5">{getDateOnly(today)}</Heading>
           <Logo />
         </div>
         {children}

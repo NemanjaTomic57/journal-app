@@ -73,7 +73,7 @@ export default function SideNav() {
                   transition={motionProps.transition}
                   className="overflow-hidden text-nowrap"
                 >
-                  <Heading type="h4">{section.text}</Heading>
+                  <Heading type="h5">{section.text}</Heading>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -95,7 +95,7 @@ export default function SideNav() {
                 transition={motionProps.transition}
                 className="overflow-hidden text-nowrap"
               >
-                <Heading type="h4">Logout</Heading>
+                <Heading type="h5">Logout</Heading>
               </motion.div>
             )}
           </AnimatePresence>

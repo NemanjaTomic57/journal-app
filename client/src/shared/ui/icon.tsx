@@ -6,8 +6,11 @@ import { FcHighPriority, FcLowPriority, FcMediumPriority } from "react-icons/fc"
 import { FiChevronLeft, FiChevronsLeft } from "react-icons/fi";
 import { MdAccountBox } from "react-icons/md";
 import { RiLogoutBoxFill } from "react-icons/ri";
+import { IoClose } from "react-icons/io5";
 
 const icons: { [key: string]: IconType } = {
+  close: IoClose,
+
   chevsLeft: FiChevronsLeft,
   chevLeft: FiChevronLeft,
   newEntry: FaNewspaper,

@@ -1,11 +1,5 @@
-import { Priority } from "@/shared/interfaces/task";
+import { Priority, priorityIconMap } from "@/shared/interfaces/task";
 import Icon from "@/shared/ui/icon";
-
-const priorityIconMap: Record<Priority, string> = {
-    [Priority.Low]: "prioLow",
-    [Priority.Medium]: "prioMedium",
-    [Priority.High]: "prioHigh",
-}
 
 interface Props {
   prio: Priority;

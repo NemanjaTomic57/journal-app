@@ -1,4 +1,4 @@
-import { Priority, priorityIconMap } from "@/shared/interfaces/task";
+import { Priority, priorityIconMap } from "@/shared/models/task";
 import Icon from "@/shared/ui/icon";
 
 interface Props {

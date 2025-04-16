@@ -1,4 +1,4 @@
-import { Task } from "@/shared/interfaces/task";
+import { Task } from "@/shared/models/task";
 import Heading from "@/shared/ui/heading";
 import Overlay from "@/shared/ui/overlay";
 import KanbanTaskTags from "./kanbanTaskTags";

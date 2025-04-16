@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { timespanDd } from "@/shared/content/calendar";
+import { timespanDdItems } from "@/shared/models/calendar";
 import CalendarHeader from "@/components/calendarHeader";
 import CalendarMonth from "@/components/calendarMonth";
 import CalendarWeek from "@/components/calendarWeek";
@@ -10,7 +10,7 @@ import CalendarYear from "@/components/calendarYear";
 export default function Page() {
   const [date, setDate] = useState<Date>(new Date());
   const [activeTimespan, setActiveTimespan] = useState<string>(
-    timespanDd[1].text
+    timespanDdItems[1].text
   );
 
   return (
@@ -22,11 +22,11 @@ export default function Page() {
         setTimespan={setActiveTimespan}
       />
 
-      {activeTimespan == timespanDd[0].text && <CalendarWeek date={date} />}
+      {activeTimespan == timespanDdItems[0].text && <CalendarWeek date={date} />}
 
-      {activeTimespan == timespanDd[1].text && <CalendarMonth date={date} />}
+      {activeTimespan == timespanDdItems[1].text && <CalendarMonth date={date} />}
 
-      {activeTimespan == timespanDd[2].text && <CalendarYear date={date} />}
+      {activeTimespan == timespanDdItems[2].text && <CalendarYear date={date} />}
     </div>
   );
 }

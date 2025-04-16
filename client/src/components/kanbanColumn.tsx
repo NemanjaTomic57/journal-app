@@ -1,5 +1,5 @@
 import KanbanTask from "./kanbanTask";
-import { Task } from "@/shared/interfaces/task";
+import { Task } from "@/shared/models/task";
 
 interface Props {
   tasks?: Task[];

@@ -1,6 +1,6 @@
 import KanbanColumn from "@/components/kanbanColumn";
 import KanbanColumnBacklog from "@/components/kanbanColumnBacklog";
-import { Priority, Status } from "@/shared/interfaces/task";
+import { Priority, Status } from "@/shared/models/task";
 import Button from "@/shared/ui/button";
 import Heading from "@/shared/ui/heading";
 import Icon from "@/shared/ui/icon";

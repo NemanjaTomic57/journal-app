@@ -10,8 +10,8 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const motionProps = {
-  transition: { duration: 0.3, ease: "easeInOut" },
-  transitionSpring: {type: "spring", duration: .7, bounce: .5}
+  transition: { duration: 0.8, ease: "easeInOut" },
+  transitionSpring: { type: "spring", duration: 0.7, bounce: 0.5 },
 };
 
 export default function SideNav() {
@@ -19,26 +19,22 @@ export default function SideNav() {
   const path = usePathname().split("/").pop() || "";
 
   return (
-    <div className="p-1 bg-stone sticky left-0 top-0 h-screen">
-      <div className="grid gap-2">
+    <div className="p-4 bg-stone sticky left-0 top-0 h-screen">
+      <div className="grid">
         <div className="flex justify-between items-center text-primary my-6">
           <AnimatePresence>
             {show && (
               <motion.div
-                initial={{ width: 0, opacity: 0, marginInline: 0 }}
-                animate={{ width: "auto", opacity: 1, marginInline: "12px" }}
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: "auto", opacity: 1,  }}
                 exit={{
                   width: 0,
-                  paddingInline: "0",
                   opacity: 0,
-                  marginInline: 0,
                 }}
                 transition={motionProps.transition}
                 className="overflow-hidden"
               >
-                <Heading type="h3">
-                  Dashboard
-                </Heading>
+                <Heading type="h3">Dashboard</Heading>
               </motion.div>
             )}
           </AnimatePresence>
@@ -67,9 +63,9 @@ export default function SideNav() {
             <AnimatePresence>
               {show && (
                 <motion.div
-                  initial={{ width: 0, opacity: 0, marginLeft: "0px" }}
-                  animate={{ width: "auto", opacity: 1, marginLeft: "12px" }}
-                  exit={{ width: 0, opacity: 0, marginLeft: "0px" }}
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: "300px", opacity: 1,  }}
+                  exit={{ width: 0, opacity: 0 }}
                   transition={motionProps.transition}
                   className="overflow-hidden text-nowrap"
                 >
@@ -89,9 +85,9 @@ export default function SideNav() {
           <AnimatePresence>
             {show && (
               <motion.div
-                initial={{ width: 0, opacity: 0, marginLeft: "0px" }}
-                animate={{ width: "auto", opacity: 1, marginLeft: "12px" }}
-                exit={{ width: 0, opacity: 0, marginLeft: "0px" }}
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: "auto", opacity: 1,  }}
+                exit={{ width: 0, opacity: 0 }}
                 transition={motionProps.transition}
                 className="overflow-hidden text-nowrap"
               >

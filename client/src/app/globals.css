@@ -175,29 +175,48 @@ ul {
   @apply rounded-md;
 }
 
-.btn-fill-lg {
-  background-color: var(--primary);
+.btn-lg {
   padding: 8px 40px;
-  color: var(--background);
-  border: 1px solid transparent;
   box-shadow: 1px 0 4px rgba(100, 100, 100, 0.4), 1px 0 12px rgba(158, 158, 158, 0.4);
 }
 
-.btn-fill-lg:hover {
+.btn-sm {
+  padding: 3px 14px;
+  box-shadow: 1px 0 4px rgba(100, 100, 100, 0.4), 1px 0 12px rgba(158, 158, 158, 0.4);
+  @apply rounded-sm;
+}
+
+.btn-fill-primary {
+  background-color: var(--primary);
+  border: 1px solid transparent;
+  color: var(--background);
+}
+
+.btn-fill-primary:hover {
   background-color: var(--background);
   color: var(--primary);
   border-color: var(--primary);
 }
 
-.btn-fill-sm {
-  padding: 3px 14px;
-  border: 1px solid transparent;
-  @apply rounded-sm;
+.btn-stroked-primary {
+  background-color: var(--primary);
+  border: 1px solid var(--background);
+  color: var(--background);
 }
 
-.btn-stroke-sm {
-  padding: 3px 14px;
-  @apply rounded-sm;
+.btn-stroked-primary:hover {
+  background: var(--primary-tone);
+}
+
+.btn-stroked-background {
+  background-color: var(--background);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-stroked-background:hover {
+  background: var(--primary);
+  color: var(--background);
 }
 
 /* TIPTAP */

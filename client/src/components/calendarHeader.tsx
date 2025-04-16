@@ -1,16 +1,14 @@
 "use client";
 
 import { getMonthAndWeek, getMonthOnly } from "@/shared/libs/dateTime";
-import { useOnClickOutside } from "@/shared/libs/useOnClickOutside";
-import { timespanDd } from "@/shared/content/calendar";
+import { timespanDdItems } from "@/shared/models/calendar";
 import Button from "@/shared/ui/button";
 import Icon from "@/shared/ui/icon";
 import clsx from "clsx";
-import { Dispatch, SetStateAction, useRef, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
+import DdSm, { DropdownItem } from "@/shared/ui/ddSm";
 
 const iconButton = "p-2 hover:bg-primary-tone rounded-full!";
-
-const ddButton = "p-2 cursor-pointer hover:bg-stone flex items-center gap-2";
 
 interface Props {
   date: Date;
@@ -25,19 +23,14 @@ export default function CalendarHeader({
   timespan,
   setTimespan,
 }: Props) {
-  const [showTimespanDd, setShowTimespanDd] = useState(false);
-  const timespanDdRef = useRef(null);
-
-  useOnClickOutside(timespanDdRef, () => setShowTimespanDd(false));
-
   const decrementDate = () => {
     setDate((prev) => {
       const newDate = new Date(prev);
-      if (timespan === timespanDd[0].text) {
+      if (timespan === timespanDdItems[0].text) {
         newDate.setDate(newDate.getDate() - 7);
-      } else if (timespan === timespanDd[1].text) {
+      } else if (timespan === timespanDdItems[1].text) {
         newDate.setMonth(newDate.getMonth() - 1);
-      } else if (timespan === timespanDd[2].text) {
+      } else if (timespan === timespanDdItems[2].text) {
         newDate.setFullYear(newDate.getFullYear() - 1);
       }
       return newDate;
@@ -47,27 +40,26 @@ export default function CalendarHeader({
   const incrementDate = () => {
     setDate((prev) => {
       const newDate = new Date(prev);
-      if (timespan === timespanDd[0].text) {
+      if (timespan === timespanDdItems[0].text) {
         newDate.setDate(newDate.getDate() + 7);
-      } else if (timespan === timespanDd[1].text) {
+      } else if (timespan === timespanDdItems[1].text) {
         newDate.setMonth(newDate.getMonth() + 1);
-      } else if (timespan === timespanDd[2].text) {
+      } else if (timespan === timespanDdItems[2].text) {
         newDate.setFullYear(newDate.getFullYear() + 1);
       }
       return newDate;
     });
   };
 
-  const updateTimespan = (text: string) => {
-    setTimespan(text);
-    setShowTimespanDd(false);
+  const updateTimespan = (item: DropdownItem) => {
+    setTimespan(item.text);
   };
 
   return (
     <div className="flex gap-3 bg-primary text-background items-center container py-1! text-sm">
       <Button
         onClick={() => setDate(new Date())}
-        className="btn-stroke-sm border-background border-1 hover:bg-primary-tone!"
+        className="btn-sm border-background border-1 hover:bg-primary-tone!"
       >
         Today
       </Button>
@@ -77,15 +69,15 @@ export default function CalendarHeader({
           <Icon name="chevLeft" size="sm" />
         </Button>
 
-        {timespan === timespanDd[0].text && (
+        {timespan === timespanDdItems[0].text && (
           <p className="w-[11rem] text-center">{getMonthAndWeek(date)}</p>
         )}
 
-        {timespan === timespanDd[1].text && (
+        {timespan === timespanDdItems[1].text && (
           <p className="w-[11rem] text-center">{getMonthOnly(date)}</p>
         )}
 
-        {timespan === timespanDd[2].text && (
+        {timespan === timespanDdItems[2].text && (
           <p className="w-[11rem] text-center">{date.getFullYear()}</p>
         )}
 
@@ -98,32 +90,12 @@ export default function CalendarHeader({
         <Icon name="print" size="sm" />
       </Button>
 
-      <div ref={timespanDdRef} className="relative">
-        <Button
-          onClick={() => setShowTimespanDd(!showTimespanDd)}
-          className="flex items-center gap-1 btn-stroke-sm border-background border-1 hover:bg-primary-tone! text-right"
-        >
-          {timespan} <Icon name="chevLeft" className="rotate-270" size="sm" />
-        </Button>
-
-        {showTimespanDd && (
-          <div className="absolute bg-white border-1 text-primary w-full translate-y-1 rounded-sm overflow-hidden z-10">
-            {timespanDd.map((item) => (
-              <div
-                key={item.text}
-                onClick={() => updateTimespan(item.text)}
-                className={clsx(
-                  ddButton,
-                  timespan === item.text && "bg-stone",
-                  "not-last:border-b"
-                )}
-              >
-                <Icon name={item.icon} /> {item.text}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      <DdSm
+        buttonText={timespan}
+        className="border-background border-1 hover:bg-primary-tone! text-right"
+        items={timespanDdItems}
+        onSelect={updateTimespan}
+      />
     </div>
   );
 }

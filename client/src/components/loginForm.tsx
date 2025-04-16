@@ -40,7 +40,7 @@ export default function LoginForm() {
           className="mb-2"
           background="bg-background"
         />
-        <Button type="submit" className="btn-fill-lg w-fit m-auto h-[38px] py-0!">
+        <Button type="submit" className="btn-lg btn-fill-primary w-fit m-auto h-[38px] py-0!">
           Sign in
         </Button>
       </form>

@@ -1,4 +1,4 @@
-export const timespanDd = [
+export const timespanDdItems = [
   {
     text: "Week",
     icon: "week",

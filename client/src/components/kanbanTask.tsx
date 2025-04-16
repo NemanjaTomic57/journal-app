@@ -3,7 +3,7 @@
 import { useState } from "react";
 import KanbanTaskPrio from "./kanbanTaskPrio";
 import KanbanTaskTags from "./kanbanTaskTags";
-import { Task } from "@/shared/interfaces/task";
+import { Task } from "@/shared/models/task";
 import KanbanTaskDetails from "./kanbanTaskDetails";
 
 interface Props {

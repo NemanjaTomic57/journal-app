@@ -23,11 +23,14 @@ import {
   useState,
 } from "react";
 import { useOnClickOutside } from "@/shared/libs/useOnClickOutside";
-import { RichTextEditorHandle } from "@/app/(dashboard)/new-entry/page";
 import OrderedList from "@tiptap/extension-ordered-list";
 import BulletList from "@tiptap/extension-bullet-list";
 import ListItem from "@tiptap/extension-list-item";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
+
+export type RichTextEditorHandle = {
+  getHTML: () => string | undefined;
+};
 
 const headings = [
   {
@@ -49,7 +52,11 @@ const menuButtonStyle =
 
 const isActive = "bg-stone!";
 
-const RichTextEditor = forwardRef<RichTextEditorHandle>((_props, ref) => {
+interface Props {
+  placeholder: string;
+}
+
+const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
   const [showHeadingDd, setShowHeadingDd] = useState(false);
   const [currentHeading, setCurrentHeading] = useState("Heading");
   const headingDdRef = useRef(null);
@@ -83,7 +90,7 @@ const RichTextEditor = forwardRef<RichTextEditorHandle>((_props, ref) => {
       }),
       Placeholder.configure({
         emptyEditorClass: "is-editor-empty",
-        placeholder: "Write something amazing in your journal ...",
+        placeholder: props.placeholder,
       }),
     ],
     editorProps: {
@@ -130,7 +137,7 @@ const RichTextEditor = forwardRef<RichTextEditorHandle>((_props, ref) => {
 
   return (
     <div className="input p-0! overflow-hidden flex! flex-col flex-1">
-      <div className="sticky top-0 flex border-b-1 z-100 bg-background">
+      <div className="sticky top-0 flex border-b-1 z-20 bg-background">
         <Button
           className={clsx(
             menuButtonStyle,

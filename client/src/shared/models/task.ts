@@ -17,9 +17,9 @@ export enum Status {
 }
 
 export enum Priority {
-    Low,
-    Medium,
-    High,
+    Low = "Low",
+    Medium = "Medium",
+    High = "High",
 }
 
 export const priorityIconMap: Record<Priority, string> = {
@@ -27,3 +27,8 @@ export const priorityIconMap: Record<Priority, string> = {
     [Priority.Medium]: "prioMedium",
     [Priority.High]: "prioHigh",
 }
+
+export const priorityListDd = Object.values(Priority).map((priority) => ({
+    text: priority,
+    icon: priorityIconMap[priority],
+}))

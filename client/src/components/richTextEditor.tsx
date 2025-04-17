@@ -57,6 +57,7 @@ interface Props {
 }
 
 const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
+  const [isFocused, setIsFocused] = useState(false);
   const [showHeadingDd, setShowHeadingDd] = useState(false);
   const [currentHeading, setCurrentHeading] = useState("Heading");
   const headingDdRef = useRef(null);
@@ -89,15 +90,17 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
         levels: [2, 3, 4],
       }),
       Placeholder.configure({
-        emptyEditorClass: "is-editor-empty",
+        emptyNodeClass: "is-editor-empty",
         placeholder: props.placeholder,
       }),
     ],
     editorProps: {
       attributes: {
-        class: "outline-none w-full min-h-full p-[16px]",
+        class: "input outline-none! border-none! w-full min-h-full",
       },
     },
+    onFocus: () => setIsFocused(true),
+    onBlur: () => setIsFocused(false),
     immediatelyRender: false,
   });
 
@@ -274,11 +277,8 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
         </Button>
       </div>
 
-      <div className="flex-1 overflow-auto">
-        <EditorContent
-          editor={editor}
-          className="h-full"
-        />
+      <div className={clsx("flex-1 overflow-auto", isFocused && "is-focused")}>
+        <EditorContent editor={editor} className="h-full tiptap" />
       </div>
     </div>
   );

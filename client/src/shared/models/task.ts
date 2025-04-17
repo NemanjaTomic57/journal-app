@@ -1,6 +1,7 @@
 export interface Task {
     title: string;
     description: string;
+    attachments: File[];
     priority: Priority;
     status: Status;
     tags: string[];
@@ -17,9 +18,9 @@ export enum Status {
 }
 
 export enum Priority {
-    Low = "Low",
-    Medium = "Medium",
     High = "High",
+    Medium = "Medium",
+    Low = "Low",
 }
 
 export const priorityIconMap: Record<Priority, string> = {

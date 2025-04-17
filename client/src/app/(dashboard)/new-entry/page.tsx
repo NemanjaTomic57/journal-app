@@ -1,7 +1,6 @@
 "use client";
 
 import RichTextEditor, { RichTextEditorHandle } from "@/components/richTextEditor";
-import { useInputPlaceholder } from "@/shared/libs/useInputPlaceholder";
 import Button from "@/shared/ui/button";
 import Icon from "@/shared/ui/icon";
 import { useRef } from "react";

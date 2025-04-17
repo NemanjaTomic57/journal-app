@@ -3,22 +3,27 @@
 import Button from "@/shared/ui/button";
 import Icon from "@/shared/ui/icon";
 import Heading from "@/shared/ui/heading";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Popup5xl from "@/shared/ui/popup5xl";
 import InputText from "@/shared/ui/inputText";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import RichTextEditor, { RichTextEditorHandle } from "./richTextEditor";
 import DdSm, { DropdownItem } from "@/shared/ui/ddSm";
-import { priorityListDd } from "@/shared/models/task";
+import { Priority, priorityListDd } from "@/shared/models/task";
+import InputTags from "@/shared/ui/inputTags";
+import InputDatepicker from "@/shared/ui/inputDatepicker";
+import InputFile from "@/shared/ui/inputFile";
+import InputTaskDescription from "@/shared/ui/inputTaskDescription";
 
 const createTaskSchema = z.object({
+  priority: z.string(),
   title: z.string().nonempty("Title is required"),
-  description: z.string().nonempty("Description is required"),
-  priority: z.enum(["low", "medium", "high"]),
-  effortEstimate: z.string().optional(),
-  dueDate: z.date(),
+  description: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  effortEstimation: z.string(),
+  dueDate: z.string().nonempty("Due date is required"),
+  attachments: z.any().optional(),
 });
 
 type CreateTaskFields = z.infer<typeof createTaskSchema>;
@@ -27,15 +32,23 @@ export default function () {
   const [showCreateTask, setShowCreateTask] = useState(true);
   const methods = useForm<CreateTaskFields>({
     resolver: zodResolver(createTaskSchema),
+    defaultValues: {
+      priority: Priority.High.toString(),
+    },
   });
-  const { handleSubmit } = methods;
-  const [priority, setPriority] = useState<DropdownItem>(defaultPriority);
-  const editorRef = useRef<RichTextEditorHandle>(null);
+  const { handleSubmit, setValue } = methods;
+  const [priority, setPriority] = useState<DropdownItem>(getPriorityText(Priority.High));
+  const [activeTags, setActiveTags] = useState<string[]>([]);
 
   const createTask: SubmitHandler<CreateTaskFields> = async (data) => {
     console.log("Task created");
     console.log(data);
   };
+
+  useEffect(() => {
+    setValue("tags", activeTags);
+    setValue("priority", priority.text);
+  }, [activeTags, priority, setValue]);
 
   return (
     <div className="flex justify-between items-center">
@@ -45,13 +58,13 @@ export default function () {
         className="btn-sm btn-stroked-primary"
       >
         <Icon name="plus" />
-        New Task
+        New Ticket
       </Button>
 
       {/* POPUP FOR TASK CREATION */}
       {showCreateTask && (
         <Popup5xl onClose={() => setShowCreateTask(false)}>
-          <div className="p-8 text-primary max-h-[90dvh] overflow-auto">
+          <div className="text-primary max-h-[90dvh] overflow-auto p-6">
             <FormProvider {...methods}>
               <form
                 onSubmit={handleSubmit(createTask)}
@@ -59,7 +72,7 @@ export default function () {
                 className="gap-2 grid"
               >
                 <div className="flex justify-between items-center mb-2">
-                  <Heading type="h2">Create a new task</Heading>
+                  <Heading type="h2">Create a New Ticket</Heading>
                   <DdSm
                     items={priorityListDd}
                     onSelect={(priority) => setPriority(priority)}
@@ -79,14 +92,42 @@ export default function () {
                   />
                 </div>
 
-                <InputText inputName="title" label="Title" />
+                <InputText
+                  inputName="title"
+                  label="Title *"
+                  placeholder="Finish the sign-in page"
+                />
 
-                <div className="h-[60dvh] min-h-[400px] max-h-[300px] flex flex-col">
-                  <label className="input-label">Description</label>
-                  <RichTextEditor
-                    ref={editorRef}
-                    placeholder="Write a description for your task ..."
+                <InputTaskDescription
+                  inputName="description"
+                  label="Description"
+                />
+
+                <div className="grid grid-cols-2 gap-2">
+                  <InputText
+                    inputName="effortEstimation"
+                    label="Effort Estimation"
+                    placeholder="3 days"
                   />
+
+                  <InputTags
+                    label="Project Tags"
+                    inputName="currentTag"
+                    placeholder="Project-XYZ Department_3A"
+                    activeTags={activeTags}
+                    setActiveTags={setActiveTags}
+                  />
+
+                  <InputDatepicker inputName="dueDate" label="Due Date *" />
+
+                  <InputFile inputName="attachments" label="Attachments" />
+
+                  <Button
+                    className="btn-fill-primary btn-lg ml-auto mt-auto col-2"
+                    type="submit"
+                  >
+                    Submit Ticket
+                  </Button>
                 </div>
               </form>
             </FormProvider>
@@ -97,7 +138,7 @@ export default function () {
   );
 }
 
-const defaultPriority: DropdownItem = {
-  text: "Priority",
-  icon: "prioHigh",
-};
+const getPriorityText = (value: Priority): DropdownItem =>
+  priorityListDd.find((item) => item.text === value) ?? {
+    text: value,
+  };

@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const motionProps = {
-  transition: { duration: 0.8, ease: "easeInOut" },
+  transition: { duration: 0.4, ease: "easeInOut" },
   transitionSpring: { type: "spring", duration: 0.7, bounce: 0.5 },
 };
 
@@ -19,18 +19,20 @@ export default function SideNav() {
   const path = usePathname().split("/").pop() || "";
 
   return (
-    <div className="p-4 bg-stone sticky left-0 top-0 h-screen">
-      <div className="grid">
-        <div className="flex justify-between items-center text-primary my-6">
+    <div className="p-3 bg-stone sticky left-0 top-0 h-screen">
+      <div className="grid gap-3">
+        <div className="flex justify-between items-center text-primary mt-6 mb-12">
           <AnimatePresence>
             {show && (
               <motion.div
-                initial={{ width: 0, opacity: 0 }}
-                animate={{ width: "auto", opacity: 1,  }}
-                exit={{
-                  width: 0,
-                  opacity: 0,
+                initial={{ width: 0, opacity: 0, marginLeft: 0, marginRight: 0 }}
+                animate={{
+                  width: "auto",
+                  opacity: 1,
+                  marginLeft: "8px",
+                  marginRight: "30px",
                 }}
+                exit={{ width: 0, opacity: 0, marginLeft: 0, marginRight: 0 }}
                 transition={motionProps.transition}
                 className="overflow-hidden"
               >
@@ -54,7 +56,7 @@ export default function SideNav() {
             key={index}
             href={section.link}
             className={clsx(
-              "flex items-center text-primary hover:bg-stone-shade p-2",
+              "flex items-center text-primary hover:bg-stone-shade p-2 gap-0!",
               section.link.includes(path) && "bg-stone-tone"
             )}
           >
@@ -63,9 +65,9 @@ export default function SideNav() {
             <AnimatePresence>
               {show && (
                 <motion.div
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: "300px", opacity: 1,  }}
-                  exit={{ width: 0, opacity: 0 }}
+                  initial={{ width: 0, opacity: 0, marginLeft: 0 }}
+                  animate={{ width: "auto", opacity: 1, marginLeft: "12px" }}
+                  exit={{ width: 0, opacity: 0, marginLeft: 0 }}
                   transition={motionProps.transition}
                   className="overflow-hidden text-nowrap"
                 >
@@ -77,7 +79,7 @@ export default function SideNav() {
         ))}
 
         <Button
-          className="flex items-center text-primary hover:bg-stone-shade p-2"
+          className="flex items-center text-primary hover:bg-stone-shade p-2 gap-0!"
           href={routes.login}
         >
           <Icon name="logout" size="lg" />
@@ -85,9 +87,9 @@ export default function SideNav() {
           <AnimatePresence>
             {show && (
               <motion.div
-                initial={{ width: 0, opacity: 0 }}
-                animate={{ width: "auto", opacity: 1,  }}
-                exit={{ width: 0, opacity: 0 }}
+                initial={{ width: 0, opacity: 0, marginLeft: 0 }}
+                animate={{ width: "auto", opacity: 1, marginLeft: "12px" }}
+                exit={{ width: 0, opacity: 0, marginLeft: 0 }}
                 transition={motionProps.transition}
                 className="overflow-hidden text-nowrap"
               >

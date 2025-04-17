@@ -11,7 +11,7 @@ export default function KanbanTaskTags({ tags, className }: Props) {
       {tags.map((tag, index) => (
         <div
           key={index}
-          className={clsx("bg-secondary w-fit h-fit rounded-sm text-background font-semibold cursor-default", className)}
+          className={clsx("bg-secondary w-fit h-fit rounded-sm text-background font-semibold", className)}
         >
           {tag}
         </div>

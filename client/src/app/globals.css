@@ -24,6 +24,7 @@
   --primary: #26678f;
   --primary-tone: #237cb4;
   --secondary: #02a892;
+  --secondary-tint: #07c0a7;
   --stone: #c7e5f8;
   --stone-tint: #e6f4fd;
   --stone-tone: #a7cee4;
@@ -40,6 +41,7 @@
   --color-primary: var(--primary);
   --color-primary-tone: var(--primary-tone);
   --color-secondary: var(--secondary);
+  --color-secondary-tint: var(--secondary-tint);
   --color-stone: var(--stone);
   --color-stone-tint: var(--stone-tint);
   --color-stone-tone: var(--stone-tone);
@@ -108,7 +110,8 @@ link:hover {
 
 ol,
 ul {
-  margin-left: 20px;
+  margin-block: 1rem;
+  margin-left: 2rem;
 }
 
 ol {
@@ -131,42 +134,6 @@ ul {
   }
 }
 
-.input-label {
-  display: block;
-  margin-bottom: 2px;
-}
-
-.input {
-  display: block;
-  width: 100%;
-  padding: 6px 16px;
-  border: 1px solid var(--foreground);
-  outline: none;
-  @apply rounded-sm;
-}
-
-.input:focus {
-  outline: 2px solid var(--primary);
-  border-color: transparent;
-}
-
-.input-title {
-  border: none;
-  padding-bottom: 1px;
-  border-bottom: 1px solid var(--foreground);
-  border-radius: 0px;
-}
-
-.input-title:focus {
-  padding-bottom: 0px;
-  border-bottom: 2px solid var(--primary);
-  outline: none;
-}
-
-::placeholder {
-  color: var(--stone-shade);
-}
-
 /* BUTTONS */
 .btn {
   text-decoration: none !important;
@@ -182,8 +149,8 @@ ul {
 
 .btn-sm {
   padding: 3px 14px;
-  box-shadow: 1px 0 4px rgba(100, 100, 100, 0.4), 1px 0 12px rgba(158, 158, 158, 0.4);
-  @apply rounded-sm;
+  box-shadow: 1px 0 4px rgba(100, 100, 100, 0.4);
+  @apply rounded-sm text-sm;
 }
 
 .btn-fill-primary {
@@ -219,11 +186,51 @@ ul {
   color: var(--background);
 }
 
+/* INPUTS */
+.input-label {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--foreground);
+  outline: none;
+  @apply rounded-sm;
+}
+
+.input:focus-within {
+  outline: 2px solid var(--primary);
+  border-color: transparent;
+}
+
+.input-title {
+  border: none;
+  padding-bottom: 1px;
+  border-bottom: 1px solid var(--foreground);
+  border-radius: 0px;
+}
+
+.input-title:focus {
+  padding-bottom: 0px;
+  border-bottom: 2px solid var(--primary);
+  outline: none;
+}
+
+::placeholder, .placeholder, .tiptap p.is-editor-empty:first-child::before {
+  color: var(--stone-shade);
+  pointer-events: none;
+}
+
+
 /* TIPTAP */
 .tiptap p.is-editor-empty:first-child::before {
-  color: #adb5bd;
   content: attr(data-placeholder);
-  float: left;
-  height: 0;
-  pointer-events: none;
+  position: absolute;
+}
+
+.is-focused .tiptap p.is-editor-empty:first-child::before {
+  content: '';
 }

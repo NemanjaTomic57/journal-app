@@ -19,7 +19,7 @@ export default function Popup5xl({ children, onClose }: Props) {
     <>
       <Overlay />
 
-      <Button className="p-2 bg-white absolute top-10 right-10 rounded-full! hover:bg-stone cursor-pointer">
+      <Button className="p-1 bg-white absolute top-5 right-5 rounded-full! hover:bg-stone cursor-pointer">
         <Icon name="close" size="lg" color="var(--primary)" />
       </Button>
 

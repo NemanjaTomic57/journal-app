@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import InputValidationError from "./inputValidationError";
 
@@ -14,8 +13,6 @@ export default function InputFile({ inputName, label }: Props) {
     control,
     formState: { errors },
   } = useFormContext();
-  const [files, setFiles] = useState<FileList | null>(null);
-
   const errorMessage = errors[inputName]?.message as string;
 
   return (

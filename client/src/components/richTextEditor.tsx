@@ -54,6 +54,8 @@ const isActive = "bg-stone!";
 
 interface Props {
   placeholder: string;
+  content?: string;
+  onChange?: () => void;
 }
 
 const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
@@ -99,8 +101,12 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
         class: "input outline-none! border-none! w-full min-h-full",
       },
     },
+    content: props.content || "",
     onFocus: () => setIsFocused(true),
     onBlur: () => setIsFocused(false),
+    onUpdate: () => {
+      props.onChange?.()
+    },
     immediatelyRender: false,
   });
 

@@ -1,12 +1,12 @@
 export interface Task {
     title: string;
     description: string;
-    attachments: File[];
     priority: Priority;
-    status: Status;
-    tags: string[];
-    createdAt: Date;
-    effortEstimate: string;
+    status?: Status;
+    tags?: string[];
+    attachments?: File[];
+    createdAt?: Date;
+    effortEstimate?: string;
     dueDate: Date;
 }
 

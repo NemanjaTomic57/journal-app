@@ -3,23 +3,24 @@
 import Button from "@/shared/ui/button";
 import Icon from "@/shared/ui/icon";
 import Heading from "@/shared/ui/heading";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Popup5xl from "@/shared/ui/popup5xl";
 import InputText from "@/shared/ui/inputText";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import DdSm, { DropdownItem } from "@/shared/ui/ddSm";
-import { Priority, priorityListDd } from "@/shared/models/task";
+import { Priority, priorityListDd, Status, Task } from "@/shared/models/task";
 import InputTags from "@/shared/ui/inputTags";
 import InputDatepicker from "@/shared/ui/inputDatepicker";
 import InputFile from "@/shared/ui/inputFile";
 import InputTaskDescription from "@/shared/ui/inputTaskDescription";
+import { KanbanTaskContext } from "@/shared/context/kanbanTaskProvider";
 
 const createTaskSchema = z.object({
   priority: z.string(),
   title: z.string().nonempty("Title is required"),
-  description: z.string().optional(),
+  description: z.string().nonempty("Description is required"),
   tags: z.array(z.string()).optional(),
   effortEstimation: z.string(),
   dueDate: z.string().nonempty("Due date is required"),
@@ -28,21 +29,33 @@ const createTaskSchema = z.object({
 
 type CreateTaskFields = z.infer<typeof createTaskSchema>;
 
-export default function () {
-  const [showCreateTask, setShowCreateTask] = useState(true);
+export default function KanbanColumnBacklog() {
+  const {setCurrentTasks} = useContext(KanbanTaskContext);
+  const [showCreateTask, setShowCreateTask] = useState(false);
   const methods = useForm<CreateTaskFields>({
     resolver: zodResolver(createTaskSchema),
     defaultValues: {
       priority: Priority.High.toString(),
     },
   });
-  const { handleSubmit, setValue } = methods;
   const [priority, setPriority] = useState<DropdownItem>(getPriorityText(Priority.High));
   const [activeTags, setActiveTags] = useState<string[]>([]);
+  const { handleSubmit, setValue } = methods;
 
   const createTask: SubmitHandler<CreateTaskFields> = async (data) => {
-    console.log("Task created");
     console.log(data);
+
+    const newTask: Task = {
+      title: data.title,
+      description: data.description,
+      priority: Priority[data.priority as keyof typeof Priority],
+      dueDate: new Date(data.dueDate),
+      status: Status.Backlog,
+    }
+
+    setCurrentTasks(prev => {
+      return [...prev, newTask];
+    })
   };
 
   useEffect(() => {
@@ -100,7 +113,7 @@ export default function () {
 
                 <InputTaskDescription
                   inputName="description"
-                  label="Description"
+                  label="Description *"
                 />
 
                 <div className="grid grid-cols-2 gap-2">

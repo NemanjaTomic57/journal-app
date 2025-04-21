@@ -29,8 +29,8 @@ const createTaskSchema = z.object({
 
 type CreateTaskFields = z.infer<typeof createTaskSchema>;
 
-export default function KanbanColumnBacklog() {
-  const {setCurrentTasks} = useContext(KanbanTaskContext);
+export default function KanbanCreateTask() {
+  const {setTasks: setCurrentTasks} = useContext(KanbanTaskContext);
   const [showCreateTask, setShowCreateTask] = useState(false);
   const methods = useForm<CreateTaskFields>({
     resolver: zodResolver(createTaskSchema),
@@ -43,9 +43,8 @@ export default function KanbanColumnBacklog() {
   const { handleSubmit, setValue } = methods;
 
   const createTask: SubmitHandler<CreateTaskFields> = async (data) => {
-    console.log(data);
-
     const newTask: Task = {
+      id: 10,
       title: data.title,
       description: data.description,
       priority: Priority[data.priority as keyof typeof Priority],
@@ -56,6 +55,8 @@ export default function KanbanColumnBacklog() {
     setCurrentTasks(prev => {
       return [...prev, newTask];
     })
+
+    console.log(newTask);
   };
 
   useEffect(() => {

@@ -1,31 +1,13 @@
-"use client";
-
-import KanbanColumn from "@/components/kanbanColumn";
-import KanbanColumnBacklog from "@/components/kanbanColumnBacklog";
+import Kanban from "@/components/kanban";
 import KanbanTaskProvider from "@/shared/context/kanbanTaskProvider";
 import { Priority, Status } from "@/shared/models/task";
-import Heading from "@/shared/ui/heading";
 
 export default function Page() {
   return (
     <div className="container flex-1 flex flex-col overflow-hidden">
       <div className="flex-1 grid grid-cols-4 gap-4 overflow-hidden">
-        <KanbanTaskProvider tasks={tasksMock}>
-          <KanbanColumn>
-            <KanbanColumnBacklog />
-          </KanbanColumn>
-
-          <KanbanColumn>
-            <Heading type="h3">To Do</Heading>
-          </KanbanColumn>
-
-          <KanbanColumn>
-            <Heading type="h3">In Progress</Heading>
-          </KanbanColumn>
-
-          <KanbanColumn>
-            <Heading type="h3">Done</Heading>
-          </KanbanColumn>
+        <KanbanTaskProvider existingTasks={tasksMock}>
+          <Kanban />
         </KanbanTaskProvider>
       </div>
     </div>
@@ -34,6 +16,7 @@ export default function Page() {
 
 const tasksMock = [
   {
+    id: 1,
     createdAt: new Date(),
     title: "Create Journal App",
     description:
@@ -47,6 +30,7 @@ const tasksMock = [
   },
 
   {
+    id: 2,
     createdAt: new Date(),
     title: "Learn Mathematics for ML",
     description: "Just build something :)",
@@ -59,6 +43,7 @@ const tasksMock = [
   },
 
   {
+    id: 3,
     createdAt: new Date(),
     title: "Complete the Data Scientist Course",
     description: "Just build",

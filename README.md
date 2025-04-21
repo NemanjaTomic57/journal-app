@@ -27,13 +27,7 @@ A simple custom journal app to document your day-to-day life. Create, save, and 
 
 ## 🗂️ Kanban Board
 
-- Create and manage tasks  
+- Create and manage tasks
+- Drag and drop tasks to change status
 - Track to-do items with email reminders  
 - Columns: Backlog, To-Do, In Progress, Done  
-- Task details include:
-  - Title & description  
-  - Priority & status  
-  - Due date & tags  
-  - Effort estimate & dependencies  
-  - Attachments (e.g. PDF, Images, or Spreadsheets)
-

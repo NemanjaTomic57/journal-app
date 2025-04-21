@@ -25,7 +25,7 @@ export default function Popup5xl({ children, onClose }: Props) {
 
       <div
         ref={ref}
-        className="fixed w-4xl h-fit inset-0 m-auto bg-background rounded-md shadow-xl overflow-hidden"
+        className="fixed w-4xl h-fit inset-0 m-auto bg-background rounded-md shadow-xl overflow-auto z-100"
       >
         {children}
       </div>

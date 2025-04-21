@@ -19,7 +19,7 @@ export default function KanbanTaskDetails({ task, closeDetails }: Props) {
         <KanbanTaskTags tags={task.tags} className="px-3 py-1 not-last:mr-2" />
       </div>
 
-      <div className="grid grid-cols-[1fr_auto] gap-12">
+      <div className="grid grid-cols-[1fr_auto] gap-12 flex-1">
         <div className="pl-8 pb-8 grid gap-4">
           <p>{task.description}</p>
 
@@ -27,11 +27,11 @@ export default function KanbanTaskDetails({ task, closeDetails }: Props) {
           <Heading type="h3">Attachments</Heading>
         </div>
 
-        <div className="grid grid-cols-[auto_auto] bg-stone rounded-tl-md p-8 items-center gap-y-2 gap-x-12">
+        <div className="grid grid-cols-[auto_auto] bg-stone rounded-tl-md p-8 items-center gap-y-2 gap-x-12 ">
           <p className="font-semibold">Status</p>
           <p>{task.status}</p>
           <p className="font-semibold">Created on</p>
-          <p>{getDateTime(task.createdAt)}</p>
+          <p>{getDateTime(task.createdAt!)}</p>
           <p className="font-semibold">Priority</p>
           <KanbanTaskPrio prio={task.priority} />
           <p className="font-semibold">Effort estimate</p>

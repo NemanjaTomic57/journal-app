@@ -4,25 +4,30 @@ import { createContext, Dispatch, SetStateAction, useState } from "react";
 import { Task } from "../models/task";
 
 export interface ContextProps {
-    currentTasks: Task[],
-    setCurrentTasks: Dispatch<SetStateAction<Task[]>>,
+    tasks: Task[],
+    setTasks: Dispatch<SetStateAction<Task[]>>,
+    activeTask: Task | null,
+    setActiveTask: Dispatch<SetStateAction<Task | null>>,
 }
 
 export const KanbanTaskContext = createContext<ContextProps>({
-    currentTasks: [],
-    setCurrentTasks: () => {},
+    tasks: [],
+    setTasks: () => {},
+    activeTask: null,
+    setActiveTask: () => {},
 });
 
 interface Props {
-    tasks: Task[]
+    existingTasks: Task[]
     children: React.ReactNode
 }
 
-export default function KanbanTaskProvider({tasks, children}: Props) {
-    const [currentTasks, setCurrentTasks] = useState<Task[]>(tasks);
+export default function KanbanTaskProvider({existingTasks, children}: Props) {
+    const [tasks, setTasks] = useState<Task[]>(existingTasks);
+    const [activeTask, setActiveTask] = useState<Task | null>(null);
 
     return (
-        <KanbanTaskContext.Provider value={{currentTasks, setCurrentTasks}}>
+        <KanbanTaskContext.Provider value={{tasks, setTasks, activeTask, setActiveTask}}>
             {children}
         </KanbanTaskContext.Provider>
     )

@@ -6,6 +6,8 @@ import Heading from "@/shared/ui/heading";
 import KanbanCreateTask from "./kanbanCreateTask";
 import Draggable from "./draggable";
 import KanbanTask from "./kanbanTask";
+import { motion } from "motion/react";
+import { spring } from "motion";
 
 interface Props {
   status: Status;
@@ -15,7 +17,7 @@ export default function KanbanDroppable({ status }: Props) {
   const { tasks: currentTasks } = useContext(KanbanTaskContext);
   const { isOver, setNodeRef } = useDroppable({ id: status });
 
-  const style = { color: isOver ? "green" : undefined };
+  const style = { background: isOver ? "var(--stone-tone)" : undefined };
 
   return (
     <div
@@ -31,14 +33,23 @@ export default function KanbanDroppable({ status }: Props) {
         )}
       </div>
 
-      <div className="overflow-auto flex-1">
+      <div className="overflow-y-auto overflow-x-hidden flex-1">
         {currentTasks &&
           currentTasks.map(
             (task, index) =>
               task.status === status && (
-                <Draggable key={index} className="grid divide-x-2 border-stone-shade not-last:border-b-2" id={task.id}>
-                  <KanbanTask task={task} />
-                </Draggable>
+                <motion.div 
+                key={index}
+                layout
+                transition={spring}
+                className="grid divide-x-2 border-stone-shade not-last:border-b-2"
+                >
+                  <Draggable
+                    id={task.id}
+                  >
+                    <KanbanTask task={task} />
+                  </Draggable>
+                </motion.div>
               )
           )}
       </div>

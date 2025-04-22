@@ -8,10 +8,12 @@ import { KanbanTaskContext } from "@/shared/context/kanbanTaskProvider";
 import KanbanTask from "./kanbanTask";
 
 export default function Kanban() {
-  const { setTasks, activeTask } = useContext(KanbanTaskContext);
+  const { tasks, setTasks, activeTask, setActiveTask } = useContext(KanbanTaskContext);
   const statusContainers = Object.values(Status).map((s) => s);
 
-  function handleDragStart(active: Active) {}
+  function handleDragStart(active: Active) {
+    setActiveTask(tasks.find(t => t.id === active.id) || null)
+  }
 
   function handleDragEnd(active: Active, over: Over | null) {
     if (over === null) return;
@@ -20,6 +22,8 @@ export default function Kanban() {
       prev.find((t) => t.id === active.id)!.status = over.id as Status;
       return prev;
     });
+
+    setActiveTask(null);
   }
 
   return (

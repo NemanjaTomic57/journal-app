@@ -14,7 +14,7 @@ interface Props {
 export default function KanbanTask({ task }: Props) {
   const [showTaskDetails, setShowTaskDetails] = useState(false);
   return (
-    <div className="grid p-2 not-last:border-b-1 border-stone-shade cursor-pointer bg-stone hover:bg-stone-tone">
+    <div className="grid p-2 not-last:border-b-1 cursor-pointer bg-stone hover:bg-stone-shade">
       <div
         className="flex gap-2 items-center mb-1"
         onClick={() => setShowTaskDetails(!showTaskDetails)}

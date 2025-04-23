@@ -23,7 +23,7 @@ export default function Page() {
       <div className="flex justify-between items-end mb-4 gap-20">
         <input
           placeholder="Title"
-          className="text-5xl border-b-1 w-full outline-0 px-4"
+          className="text-5xl border-b-2 outline-0 w-full px-4"
         />
         <Button className="btn-lg btn-fill-primary flex items-center gap-2" onClick={handleSubmit}>
           <Icon name="save" />

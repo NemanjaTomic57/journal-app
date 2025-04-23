@@ -19,7 +19,7 @@ export default function SideNav() {
   const path = usePathname().split("/").pop() || "";
 
   return (
-    <div className="p-3 bg-stone absolute left-0 top-0 h-screen z-90">
+    <div className="p-3 bg-stone absolute left-0 top-0 h-screen border-r-2 z-90">
       <div className="grid gap-3">
         <div className="flex justify-between items-center text-primary mt-6 mb-12">
           <AnimatePresence>

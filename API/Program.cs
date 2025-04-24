@@ -1,4 +1,5 @@
 using API.Data;
+using API.Middleware;
 using API.Objects;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +39,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = false;
 });
 
+builder.Services.AddTransient<IUserValidator<AppUser>, OptionalEmailUserValidator<AppUser>>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -45,6 +48,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
+
+app.UseMiddleware<ExceptionHandler>();
 
 app.UseCors();
 

@@ -2,8 +2,6 @@
 
 A simple custom journal app to document your day-to-day life. Create, save, and revisit entries anytime.
 
----
-
 ## 🔐 Authentication
 
 - Sign up and log in using email and password  
@@ -12,8 +10,6 @@ A simple custom journal app to document your day-to-day life. Create, save, and 
 - Password reset functionality via email  
 - Session management using secure cookies  
 - Optional: Enable multi-factor authentication (MFA) for added security  
-
----
 
 ## ✍️ Journal
 
@@ -25,16 +21,12 @@ A simple custom journal app to document your day-to-day life. Create, save, and 
 - Create ordered and unordered lists  
 - Insert dividers for better structure  
 
----
-
 ## 📆 Calendar
 
 - Full weekly, monthly, and yearly views  
 - Overview of all journal entries  
 - Set appointments with custom flags  
 - Connect to your email for reminders  
-
----
 
 ## 🗂️ Kanban Board
 

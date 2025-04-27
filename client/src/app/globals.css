@@ -69,7 +69,7 @@ body {
 
 .container-center-sm {
   margin: auto;
-  width: 400px;
+  width: 450px;
   background-color: var(--stone);
   padding: 40px;
   border: 1px solid var(--foreground);
@@ -116,8 +116,10 @@ ul {
 
 ol {
   list-style-type: decimal;
+
   ol {
     list-style-type: upper-roman;
+
     ol {
       list-style-type: lower-roman;
     }
@@ -126,8 +128,10 @@ ol {
 
 ul {
   list-style-type: disc;
+
   ul {
     list-style-type: circle;
+
     ul {
       list-style-type: square;
     }
@@ -144,7 +148,8 @@ ul {
 
 .btn-lg {
   padding: 8px 40px;
-  box-shadow: 1px 0 4px rgba(100, 100, 100, 0.4), 1px 0 12px rgba(158, 158, 158, 0.4);
+  box-shadow: 1px 0 4px rgba(100, 100, 100, 0.4),
+    1px 0 12px rgba(158, 158, 158, 0.4);
 }
 
 .btn-sm {
@@ -219,11 +224,12 @@ ul {
   outline: none;
 }
 
-::placeholder, .placeholder, .tiptap p.is-editor-empty:first-child::before {
+::placeholder,
+.placeholder,
+.tiptap p.is-editor-empty:first-child::before {
   color: var(--stone-shade);
   pointer-events: none;
 }
-
 
 /* TIPTAP */
 .tiptap p.is-editor-empty:first-child::before {
@@ -232,5 +238,5 @@ ul {
 }
 
 .is-focused .tiptap p.is-editor-empty:first-child::before {
-  content: '';
+  content: "";
 }

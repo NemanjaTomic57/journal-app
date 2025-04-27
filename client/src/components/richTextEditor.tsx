@@ -105,7 +105,7 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
     onFocus: () => setIsFocused(true),
     onBlur: () => setIsFocused(false),
     onUpdate: () => {
-      props.onChange?.()
+      props.onChange?.();
     },
     immediatelyRender: false,
   });
@@ -147,6 +147,46 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
   return (
     <div className="input p-0! overflow-hidden flex! flex-col flex-1">
       <div className="sticky top-0 flex border-b-1 z-20 bg-background">
+        <div ref={headingDdRef} className="relative w-[100px]">
+          <Button
+            className={clsx(
+              menuButtonStyle,
+              showHeadingDd && isActive,
+              editor.isActive("heading") && isActive,
+              "w-full"
+            )}
+            onClick={() => setShowHeadingDd(!showHeadingDd)}
+          >
+            {currentHeading}
+          </Button>
+          {showHeadingDd && (
+            <div className="absolute bg-background border-1 border-primary z-10 rounded-b-md overflow-hidden w-full">
+              {headings.map((heading) => (
+                <Button
+                  key={heading.level}
+                  onClick={() => {
+                    editor
+                      .chain()
+                      .focus()
+                      .toggleHeading({ level: heading.level as Level })
+                      .run();
+                    setCurrentHeading(heading.text);
+                    setShowHeadingDd(false);
+                  }}
+                  className={clsx(
+                    menuButtonStyle,
+                    editor.isActive("heading", { level: heading.level }) &&
+                      isActive,
+                    "text-nowrap w-full"
+                  )}
+                >
+                  {heading.text}
+                </Button>
+              ))}
+            </div>
+          )}
+        </div>
+
         <Button
           className={clsx(
             menuButtonStyle,
@@ -214,46 +254,6 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
         >
           <Icon name="link" />
         </Button>
-
-        <div ref={headingDdRef} className="relative w-[100px] mr-8">
-          <Button
-            className={clsx(
-              menuButtonStyle,
-              showHeadingDd && isActive,
-              editor.isActive("heading") && isActive,
-              "w-full"
-            )}
-            onClick={() => setShowHeadingDd(!showHeadingDd)}
-          >
-            {currentHeading}
-          </Button>
-          {showHeadingDd && (
-            <div className="absolute bg-background border-1 border-primary z-10 rounded-b-md overflow-hidden">
-              {headings.map((heading) => (
-                <Button
-                  key={heading.level}
-                  onClick={() => {
-                    editor
-                      .chain()
-                      .focus()
-                      .toggleHeading({ level: heading.level as Level })
-                      .run();
-                    setCurrentHeading(heading.text);
-                    setShowHeadingDd(false);
-                  }}
-                  className={clsx(
-                    menuButtonStyle,
-                    editor.isActive("heading", { level: heading.level }) &&
-                      isActive,
-                    "text-nowrap w-full"
-                  )}
-                >
-                  {heading.text}
-                </Button>
-              ))}
-            </div>
-          )}
-        </div>
 
         <Button
           className={clsx(

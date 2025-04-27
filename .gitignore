@@ -3,10 +3,9 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
-# Database
+# Customs
+.prettierrc
 *.db
-
-# dotenv files
 .env
 
 # User-specific files

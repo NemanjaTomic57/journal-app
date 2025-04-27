@@ -1,13 +1,14 @@
 "use client";
 
 import { routes } from "@/routes";
+import { useOnClickOutside } from "@/shared/libs/useOnClickOutside";
 import Button from "@/shared/ui/button";
 import Heading from "@/shared/ui/heading";
 import Icon from "@/shared/ui/icon";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const motionProps = {
   transition: { duration: 0.4, ease: "easeInOut" },
@@ -17,9 +18,11 @@ const motionProps = {
 export default function SideNav() {
   const [show, setShow] = useState(false);
   const path = usePathname().split("/").pop() || "";
+  const sidenavRef = useRef(null);
+  useOnClickOutside(sidenavRef, () => setShow(false))
 
   return (
-    <div className="p-3 bg-stone absolute left-0 top-0 h-screen border-r-2 z-90">
+    <div ref={sidenavRef} className="p-3 bg-stone absolute left-0 top-0 h-screen border-r-2 z-90">
       <div className="grid gap-3">
         <div className="flex justify-between items-center text-primary mt-6 mb-12">
           <AnimatePresence>

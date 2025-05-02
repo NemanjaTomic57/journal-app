@@ -8,6 +8,8 @@ export default function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   const today = new Date;
 
+  
+
   return (
     <>
       <SideNav />

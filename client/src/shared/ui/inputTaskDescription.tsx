@@ -26,7 +26,6 @@ export default function InputTaskDescription({ inputName, label }: Props) {
   })
 
   const handleChange = () => {
-    console.log("Hi")
     const value = editorRef.current?.getHTML() || "";
     setValue(inputName, value)
   }

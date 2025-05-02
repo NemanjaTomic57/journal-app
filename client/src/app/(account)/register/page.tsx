@@ -4,6 +4,8 @@ import Heading from "@/shared/ui/heading";
 import Link from "next/link";
 
 export default function Page() {
+  
+
   return (
     <div className="container flex flex-col m-auto">
       <div className="w-full m-auto">
@@ -17,8 +19,8 @@ export default function Page() {
           <RegisterForm />
         </div>
         <p className="mt-8 text-center">
-          Already have an account?
-          <Link href={routes.login} className="block w-fit m-auto">Login</Link>
+          Already have an account?{" "}
+          <Link href={routes.login} className="w-fit m-auto">Login</Link>
         </p>
       </div>
     </div>

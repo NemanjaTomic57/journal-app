@@ -59,7 +59,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<ExceptionHandler>();
 
-app.UseCors();
+app.UseCors(Cors);
 
 app.UseAuthentication();
 app.UseAuthorization();

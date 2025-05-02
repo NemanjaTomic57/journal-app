@@ -15,13 +15,7 @@ import clsx from "clsx";
 import Underline from "@tiptap/extension-underline";
 import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
-import {
-  forwardRef,
-  useCallback,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
+import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from "react";
 import { useOnClickOutside } from "@/shared/libs/useOnClickOutside";
 import OrderedList from "@tiptap/extension-ordered-list";
 import BulletList from "@tiptap/extension-bullet-list";
@@ -47,8 +41,7 @@ const headings = [
   },
 ];
 
-const menuButtonStyle =
-  "px-3 py-2 hover:bg-stone-tint cursor-pointer grid place-items-center rounded-none!";
+const menuButtonStyle = "px-3 py-2 hover:bg-stone-tint cursor-pointer grid place-items-center rounded-none!";
 
 const isActive = "bg-stone!";
 
@@ -98,7 +91,7 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
     ],
     editorProps: {
       attributes: {
-        class: "input outline-none! border-none! w-full min-h-full",
+        class: "input outline-none! border-none! w-full min-h-full p-4!",
       },
     },
     content: props.content || "",
@@ -129,12 +122,7 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
     }
 
     try {
-      editor
-        ?.chain()
-        .focus()
-        .extendMarkRange("link")
-        .setLink({ href: url })
-        .run();
+      editor?.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
     } catch (e: any) {
       alert(e.message);
     }
@@ -175,8 +163,7 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
                   }}
                   className={clsx(
                     menuButtonStyle,
-                    editor.isActive("heading", { level: heading.level }) &&
-                      isActive,
+                    editor.isActive("heading", { level: heading.level }) && isActive,
                     "text-nowrap w-full"
                   )}
                 >
@@ -188,103 +175,65 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, Props>((props, ref) => {
         </div>
 
         <Button
-          className={clsx(
-            menuButtonStyle,
-            editor?.isActive("bold") && isActive
-          )}
+          className={clsx(menuButtonStyle, editor?.isActive("bold") && isActive)}
           onClick={() => editor.chain().focus().toggleBold().run()}
         >
           <Icon name="bold" />
         </Button>
 
         <Button
-          className={clsx(
-            menuButtonStyle,
-            editor?.isActive("italic") && isActive
-          )}
+          className={clsx(menuButtonStyle, editor?.isActive("italic") && isActive)}
           onClick={() => editor.chain().focus().toggleItalic().run()}
         >
           <Icon name="italic" />
         </Button>
 
         <Button
-          className={clsx(
-            menuButtonStyle,
-            editor?.isActive("underline") && isActive
-          )}
+          className={clsx(menuButtonStyle, editor?.isActive("underline") && isActive)}
           onClick={() => editor.chain().focus().toggleUnderline().run()}
         >
           <Icon name="underline" />
         </Button>
 
         <Button
-          className={clsx(
-            menuButtonStyle,
-            editor?.isActive("strike") && isActive,
-            "mr-8"
-          )}
+          className={clsx(menuButtonStyle, editor?.isActive("strike") && isActive, "mr-8")}
           onClick={() => editor.chain().focus().toggleStrike().run()}
         >
           <Icon name="strikethrough" />
         </Button>
 
         <Button
-          className={clsx(
-            menuButtonStyle,
-            editor?.isActive("highlight") && isActive
-          )}
-          onClick={() =>
-            editor
-              .chain()
-              .focus()
-              .toggleHighlight({ color: "var(--stone)" })
-              .run()
-          }
+          className={clsx(menuButtonStyle, editor?.isActive("highlight") && isActive)}
+          onClick={() => editor.chain().focus().toggleHighlight({ color: "var(--stone)" }).run()}
         >
           <Icon name="highlight" />
         </Button>
 
-        <Button
-          className={clsx(
-            menuButtonStyle,
-            editor.isActive("link") && isActive,
-            "mr-8"
-          )}
-          onClick={setLink}
-        >
+        <Button className={clsx(menuButtonStyle, editor.isActive("link") && isActive, "mr-8")} onClick={setLink}>
           <Icon name="link" />
         </Button>
 
         <Button
-          className={clsx(
-            menuButtonStyle,
-            editor?.isActive("orderedList") && isActive
-          )}
+          className={clsx(menuButtonStyle, editor?.isActive("orderedList") && isActive)}
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
         >
           <Icon name="orderedList" />
         </Button>
 
         <Button
-          className={clsx(
-            menuButtonStyle,
-            editor?.isActive("bulletList") && isActive
-          )}
+          className={clsx(menuButtonStyle, editor?.isActive("bulletList") && isActive)}
           onClick={() => editor.chain().focus().toggleBulletList().run()}
         >
           <Icon name="bulletList" />
         </Button>
 
-        <Button
-          className={clsx(menuButtonStyle)}
-          onClick={() => editor.chain().focus().setHorizontalRule().run()}
-        >
+        <Button className={clsx(menuButtonStyle)} onClick={() => editor.chain().focus().setHorizontalRule().run()}>
           <Icon name="divider" />
         </Button>
       </div>
 
       <div className={clsx("flex-1 overflow-auto", isFocused && "is-focused")}>
-        <EditorContent editor={editor} className="h-full tiptap" />
+        <EditorContent editor={editor} className="h-full tiptap" tabIndex={2} onFocus={() => editor.commands.focus()} />
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ export default function Home() {
         </div>
         <p className="mt-8 text-center">
           New here?{" "}
-          <Link href={routes.register} className="block w-fit m-auto">
+          <Link href={routes.register} className="w-fit m-auto">
             Create an account
           </Link>
         </p>
